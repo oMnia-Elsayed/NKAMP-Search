@@ -9,14 +9,14 @@ export class TranslationService {
   currentLang: string;
   localStorage: any;
   constructor() {
-      if (localStorage === null) {
-        localStorage = this.getLocalStorage();
-      }
+    if (localStorage === null) {
+      localStorage = this.getLocalStorage();
+    }
     this.currentLang = 'ar-SA';
     if (localStorage !== null && localStorage.getItem('naseej_lang') !== null) {
       this.currentLang = localStorage.getItem('naseej_lang');
     }
-}
+  }
 
   setLanguage(lang: string) {
     this.currentLang = lang;

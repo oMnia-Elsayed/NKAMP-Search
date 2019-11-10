@@ -37,7 +37,7 @@ export class CriteriaComponent implements OnInit {
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService,
               private $eventEmitterService: EventEmitterService, private fb: FormBuilder) {
     this.lang = this.$globalsService.UILanguage;
-    this.inisalizeCriteriaobject();
+    // this.inisalizeCriteriaobject();
     this.DataSources = [];
     this.AllFields = [];
     this.ContainsData = [];
@@ -126,7 +126,8 @@ export class CriteriaComponent implements OnInit {
       (this.criteriaForm.get('searchadd') as FormArray).push(this.addSearchFormGroup());
     }
   }
-//   ----------------------------------------------------------------------------------------------------------------------- //
+
+//  ----------------------------------------------------------------------------------------------------------------------- //
 
   onSubmit() {
     this.setSearchObject();

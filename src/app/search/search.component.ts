@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
 
   @ViewChild('formEle') formElement: NgForm;
   lang: string;
-  isLoading = false;
+  isLoading = true;
   isSavedSearchDisabled = true;
   favoriteBadge: any;
   isNoData = true;
@@ -62,7 +62,7 @@ export class SearchComponent implements OnInit {
     this.$searchService.getSearchConfiguration(searchProfile).subscribe(data => {
       this.blockedDocument = false;
       this.$searchService.searchConfiguration$.next(data);
-      // this.isLoading = false;
+      this.isLoading = false;
     });
 
     this.$searchService.results$.subscribe(data => {

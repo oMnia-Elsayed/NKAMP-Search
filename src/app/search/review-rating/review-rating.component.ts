@@ -19,7 +19,6 @@ export class ReviewRatingComponent implements OnInit {
   constructor(private bookDetailsService: BookDetailsService, config: NgbRatingConfig, private route: ActivatedRoute) {
     config.readonly = true;
 
-
     this.route.queryParams.subscribe(params => {
       const details = params.details;
       this.requestBody = JSON.parse(details);

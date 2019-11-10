@@ -66,8 +66,7 @@
   <!-- </div> -->
   <div class="row">
     <div class="col-12">
-
-      <ng-template #contentDelete let-c="close" let-d="dismiss">
+      <!-- <ng-template #contentDelete let-c="close('a')" let-d="dismiss">
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title" i18n="@@h4_msg_title">Adding new Comment</h4>
           <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -80,7 +79,7 @@
         <div class="modal-body" *ngIf="!isAdded">
           <p i18n="@@p_msg_no_comment"> please enter Your comment </p>
         </div>
-      </ng-template>
+      </ng-template> -->
       <form (ngSubmit)="sendFavorite()" #formEle="ngForm">
         <div class="row">
           <div class="col-12">
@@ -163,12 +162,9 @@
               <input type="email" class="Favorite-input" name="email" placeholder="email@domainname.com" ngModel />
               <button class="Favorite-btn Favorite-btnEmail">Send To Email</button>
             </div>
-
           </div>
         </div>
-
       </form>
     </div>
   </div>
-
 </div>

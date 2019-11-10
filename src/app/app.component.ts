@@ -14,14 +14,12 @@ export class AppComponent {
   NavMode = NavigationMode;
   languages = [{ code: 'en', label: 'English' }, { code: 'ar', label: 'عربي' }];
 
+  // tslint:disable-next-line: use-life-cycle-interface
   async ngOnInit(): Promise<void> {
     await this.appConfig.load();
   }
 
-  constructor(
-    private appConfig: AppConfigService,
-    private elementRef: ElementRef
-  ) {
+  constructor(private appConfig: AppConfigService, private elementRef: ElementRef) {
     // this.appConfig.componentName = this.elementRef.nativeElement.getAttribute(
     //   "ComponentName"
     // );

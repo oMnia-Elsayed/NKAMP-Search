@@ -27,7 +27,7 @@ export class FavoriteSearchComponent implements OnInit {
   page = 1;
   show = false;
   index = 0;
-
+  isAdded = false;
   body = {
     userId: 'albaqer_naseej',
     // pageSize: 5,
@@ -94,6 +94,7 @@ export class FavoriteSearchComponent implements OnInit {
     this.pageIndex = pageNumber;
     this.getNextPageResults();
   }
+
   getNextPageResults(): void {
     this.favoriteService.getFavoriteList(this.body).subscribe(Data => {
       this.favoriteService.FavoriteList.next(Data);

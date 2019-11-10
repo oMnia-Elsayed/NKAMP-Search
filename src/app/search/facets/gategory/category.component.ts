@@ -147,9 +147,9 @@ export class CategoryComponent implements OnInit {
     this.checkedList.forEach(element => {
       criteria.facetsFilter.push(element); // push without checking if the el exists !
     });
-    this.$searchService.currentCriteria$.next(criteria);
     // console.log(criteria);
-    this.$searchService.getResults(criteria.facetsFilter).subscribe((data) => {
+    this.$searchService.currentCriteria$.next(criteria);
+    this.$searchService.getResults(criteria).subscribe((data) => {
       this.$searchService.results$.next(data);
       // console.log(data);
       // this.checklist = [];
