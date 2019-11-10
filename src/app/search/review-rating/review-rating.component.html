@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-12 oneBook-col">
+            <h2 class="rateAndReview-Title" i18n="@@h2_rating_reviews"> Rating and Reviews </h2>
+        </div>
+        <!-- <div class="col-sm-3 col-12">
+              <button class="rateAndReview-btn">Add Review</button>
+        </div> -->
+        <div class="col-12 oneBook-col">
+                <hr class="horizontal-line"/>
+        </div>
+        <div class="col-12 rateAndReview-reviewDetails oneBook-col" *ngFor="let comment of commentsList">
+            <div class="row">
+               <div class="col-md-1 col-sm-2 col-3">
+                    <img class="img-fluid" src="./assets/images/bookD.png" alt="user">
+               </div>
+               <div class="col-sm-11 col-sm-10 col-9 p-0">
+                    <div>
+                        <span class="rateAndReview-name">{{comment.userId}}</span>
+                        <span class="rateAndReview-date">{{comment.commentCreateDate}}</span>
+                        <!-- <span class="rateAndReview-rating">
+                                <ngb-rating [(rate)]="ratingDegree" [max]="5"></ngb-rating>
+                        </span> -->
+                    </div>
+
+                    <p  class="rateAndReview-comment no-padding">
+                        {{comment.commentData}}
+                    </p>
+               </div>
+            </div>
+        </div>
+        <!--div class="col-12 oneBook-col">
+                <a href="#" class="rateAndReview-link">
+                  <span i18n="@@spn_more_review">
+                    More Reviews
+
+                    </span>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="8.707" height="5.064" viewBox="0 0 8.707 5.064">
+                            <path id="Arrow_Down" data-name="Arrow Down" d="M4,0,0,3.925,4,8" transform="translate(0.357 4.357) rotate(-90)" fill="none" stroke-width="1"/>
+                        </svg>
+                    </span>
+
+                </a>
+        </div-->
+    </div>
+</div>

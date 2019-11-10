@@ -1,0 +1,205 @@
+.bookDetails {
+    margin-top: rem(40); // max width 576
+    @include bp(xs) // min 576
+    {  
+        margin-top: rem(30);
+    } 
+    @include bp(sm) // min 768
+    {  
+        margin-top: rem(25);
+    } 
+    @include bp(md) // min 992  
+    {  
+        margin-top: rem(30);
+    }
+    @include bp(lg) //  min  1200
+    {  
+        margin-top: rem(40);
+    }
+    .d-inline-flex{
+        outline: none;
+        color: $search-base-color;
+    }
+    .horizontal-line {
+        display: block;
+        height: rem(0);
+        background-color: $search-border;
+        margin-bottom: rem(20);
+        margin-top: rem(20);
+        @include bp(sm) // min 768
+        {  
+            margin-top: rem(25);
+            margin-bottom: rem(12);
+        } 
+        @include bp(md) // min 992  
+        {  
+            margin-top: rem(30);
+        }
+        
+    }
+    .no-padding{ 
+        padding: 0px;
+    }
+    .no-margin{
+        margin: 0px;
+    }
+    ul {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+
+        li {
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+    &-image {
+        margin-bottom: rem(25);
+        height: rem(350);
+        img {
+            min-width: 100%;
+            height: 100%;
+        }
+        @include bp(xs) // min 576
+        {  
+            margin-bottom: rem(0);
+            height: auto;
+        } 
+        &.imageslider{
+            @include bp(xs) // min 576
+            {  
+                height: 100%;
+            } 
+            img {
+                min-width: 100%;
+                height: 100%;
+            }
+            .swiper-button-next, .swiper-container-rtl .swiper-button-prev{
+                background-image: url("/branding/images/arrowRight.png");
+                outline: none;
+                background-size: auto;
+                left: rem(0);
+            }
+            .swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+                background-image: url("/branding/images/arrowLeft.png");
+                background-size: auto;
+                outline: none;
+                right: rem(0);
+            }
+            .swiper-button-next, .swiper-button-prev{
+                background-color: rgba($color: #000000, $alpha: 0.15);
+                width: rem(45);
+                height: rem(50);
+            }
+        }
+        &-slide{
+            height: 100%;
+        }
+    }
+    .oneBook {
+        &-title {
+            color: $search-base-color;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-size: rem(14);
+            margin-bottom: rem(15);
+            width: 100%;  
+            @include bp(xs) // min 576
+            {  
+                font-size: rem(18);
+                margin-bottom: rem(15);
+                width: rem(330); 
+            } 
+            @include bp(sm) // min 768
+            {  
+                width: rem(390); 
+            } 
+            @include bp(md) // min 992  
+            {  
+                font-size: rem(20);
+                width: rem(452); 
+            }
+        }
+        &-rating-review {
+            margin-bottom: rem(18);
+            > div{
+                @include bp(xs) // min 576
+                {  
+                    display: inline-block;
+                } 
+            }
+            .rating{
+               margin-bottom: rem(15);
+               @include bp(xs) // min 576
+               {  
+                   margin-right: rem(50);
+                   margin-bottom: rem(0);
+               } 
+               @include bp(md) // min 992  
+               {  
+                   margin-right: rem(90);
+               }
+               @include bp(lg) //  min  1200
+               {  
+                margin-right: rem(30);
+               }
+            }
+            .review {
+                font-size: rem(12); // max width 576
+                @include bp(xs) // min 576
+                {  
+                    font-size: rem(14);
+                }
+                span:first-child {
+                    padding-right: 5px;
+                }
+            }
+        }
+        &-pref {
+            color: $search-txt3;
+            margin-bottom: rem(15);
+            font-size: rem(12);
+            @include bp(xs) // min 576
+            {  
+                margin-bottom: rem(18);
+                font-size: rem(14);
+            } 
+        }
+        &-descrption {
+            font-size: rem(12);
+            @include bp(xs) // min 576
+            {  
+                font-size: rem(14);
+            } 
+            >div:not(:last-child) {
+                margin-bottom: rem(15);
+            }
+            &-title{
+                color: $search-txt3;
+            }
+        }
+        &-features {
+            
+            li {
+                display: inline-block;
+                font-size: rem(14);
+                color: $search-txt;
+                cursor: pointer;
+                .icon {
+                    font-size: 16px;
+                    margin-right: rem(10);
+                    cursor: pointer;
+                }
+            }
+            li:not(:last-child) {
+                margin-right: rem(30);
+                @include bp(xs) // min 576
+                {  
+                    margin-right: rem(40);
+                } 
+            }
+        }
+    }
+}

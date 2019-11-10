@@ -1,0 +1,210 @@
+$default-color: $pri;
+$color2: #ccc;
+$bg-color: #e6e6e6;
+$diable-color: #7b7b7b;
+$indicator-color: #fff;
+$txt-color: #333333;
+
+.opinionPoll {
+
+    &-radioButton,
+    &-circle {
+        display: flex;
+
+        @include bp(xs) {
+            flex-direction: column;
+        }
+
+    }
+
+    &-text {
+        font-size: 16px;
+        margin-#{$left}: auto;
+        order: 2;
+        font-weight: bold;
+        flex: 1;
+        padding-top: 0.9em;
+        line-height: 1em;
+        text-align: $left;
+
+        @include bp(xs) {
+            text-align: center;
+            margin-#{$left}: 0;
+        }
+
+        @include bp(md) {
+            font-size: 1.1rem;
+        }
+    }
+
+    &-question {
+        margin-bottom: 1.5rem;
+    }
+
+    &-seperator {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-top-color: rgba(0, 0, 0, 0.2);
+    }
+
+    &-count {
+        color: #333333;
+        font-weight: bold;
+        font-size: 16px;
+
+        .number {
+            font-size: 1.5em;
+            margin-#{$left}: .7em;
+            vertical-align: middle;
+        }
+
+    }
+
+    &-grade {
+        color: $txt-color;
+        font-weight: bold;
+        text-align: center;
+        font-size: 1rem;
+
+
+    }
+
+    &-precentage {
+        font-size: 1.3rem;
+        color: $txt-color;
+
+    }
+
+
+    // end radio button 
+
+    .control {
+        font-family: arial;
+        display: block;
+        position: relative;
+        padding-#{$left}: 30px;
+        margin-bottom: 1em;
+        padding-top: 3px;
+        cursor: pointer;
+        font-size: 16px;
+
+        @include bp(md) {
+            padding-#{$left}: 45px;
+            font-size: 1.1rem;
+        }
+
+        input {
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+
+            &:checked~.control_indicator {
+                background: $default-color;
+
+                &:after {
+                    display: block;
+                }
+            }
+
+        }
+
+        &:hover input:not([disabled]):checked~.control_indicator,
+        input:checked:focus~.control_indicator {
+            // background: darken($default-color,  10%);
+            background: $default-color;
+        }
+
+        input:disabled~.control_indicator {
+            background: #e6e6e6;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        &.secondary {
+
+            &:hover input:not([disabled]):checked~.control_indicator,
+            input:checked~.control_indicator,
+            input:checked:focus~.control_indicator {
+                background: $sec;
+            }
+        }
+
+    }
+
+    .control_indicator {
+        position: absolute;
+        top: 2px;
+        #{$left}: 0;
+        height: 20px;
+        width: 20px;
+        background: $bg-color;
+        border: 0px solid #000000;
+
+        @include bp(md) {
+            height: 30px;
+            width: 30px;
+        }
+    }
+
+    .control-radio .control_indicator {
+        border-radius: 50%;
+    }
+
+    .control:hover input~.control_indicator,
+    .control input:focus~.control_indicator {
+        background: #cccccc;
+    }
+
+    .control_indicator:after {
+        box-sizing: unset;
+        content: '';
+        position: absolute;
+        display: none;
+    }
+
+
+
+    .control-radio .control_indicator:after {
+        #{$left}: 4px;
+        top: 4px;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background: $indicator-color;
+
+        @include bp(md) {
+            #{$left}: 5px;
+            top: 5px;
+            height: 20px;
+            width: 20px;
+        }
+    }
+
+    .control-radio input:disabled~.control_indicator:after {
+        background: $diable-color;
+    }
+
+}
+
+// <div class="control-group">
+//     <label class="control control-radio">
+//         First radio
+//             <input type="radio" name="radio" checked="checked" />
+//         <div class="control_indicator"></div>
+//     </label>
+//     <label class="control control-radio">
+//         Second radio
+//             <input type="radio" name="radio" />
+//         <div class="control_indicator"></div>
+//     </label>
+//     <label class="control control-radio">
+//         Disabled
+//             <input type="radio" name="radio2" disabled="disabled" />
+//         <div class="control_indicator"></div>
+//     </label>
+//     <label class="control control-radio">
+//         Disabled & checked
+//             <input type="radio" name="radio2" disabled="disabled" checked="checked" />
+//         <div class="control_indicator"></div>
+//     </label>
+// </div>

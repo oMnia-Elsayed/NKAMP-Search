@@ -1,0 +1,46 @@
+.searchNK {
+    &-criteria {
+        .form-control {
+            font-size: 12px;
+            height: $controlHeight;
+        }
+
+        select.form-control {
+            padding: 0;
+        }
+    }
+
+
+    &-addFromBtn,
+    &-removeFromBtn {
+        height: $controlHeight;
+        width: $controlHeight;
+        padding: 7px 0;
+        line-height: 16px;
+        text-align: center;
+        font-size: 12px;
+
+        @include bp(isMiniMobile) {
+            width: 100%;
+        }
+
+    }
+
+    &-changeStateBtn,
+    &-searchBtn {
+        height: $controlHeight;
+        line-height: 16px;
+        font-size: 12px;
+
+    }
+
+    &-changeStateBtn {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    &-searchBtn {
+        width: 100%;
+    }
+
+}

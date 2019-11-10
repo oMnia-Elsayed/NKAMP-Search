@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2"
+  xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+
+      <trans-unit id="lblsearch_field" datatype="html">
+        <source>Choose</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="lblsearch_Containes" datatype="html">
+        <source>Containes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lblsearch_placeholder" datatype="html">
+        <source>Searchtext</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="lblsearch_errortext" datatype="html">
+        <source>Please Enter Search Text</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="lblsearch" datatype="html">
+        <source>Search</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lblsavedsearch" datatype="html">
+        <source>Save Search</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\search\search.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+
+
+
+
+      <trans-unit id="lblsearch_simplesearch" datatype="html">
+        <source>SimpleSearch</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+
+
+
+
+      <trans-unit id="lblsearch_advancedSearch" datatype="html">
+        <source>AdvancedSearchkkkkkk</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lblno_save_search_yet" datatype="html">
+        <source>no save search yet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\search\search.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lblSave" datatype="html">
+        <source>save</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\search\search.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lbl_favorite" datatype="html">
+        <source>favorite</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\search\search.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="lbl_active_selection" datatype="html">
+        <source>active selection</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\active-selection\active-selection.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="btn_clear" datatype="html">
+        <source>clear</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\active-selection\active-selection.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="a_Back_results" datatype="html">
+        <source>Back to results</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\book-details\book-details.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lbl_and" datatype="html">
+        <source>and</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\criteria\criteria.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lbl_or" datatype="html">
+        <source>or</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\criteria\criteria.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="lbl_add" datatype="html">
+        <source>add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\criteria\criteria.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lbl_remove" datatype="html">
+        <source>remove</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\criteria\criteria.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lbl_select_all" datatype="html">
+        <source>Select all</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\facets\gategory\category.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="btn_visual" datatype="html">
+        <source>Visual</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\facets\gategory\category.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="spn_show_more" datatype="html">
+        <source>Show More</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\facets\gategory\category.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="spn_show_less" datatype="html">
+        <source>Show Less</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\facets\gategory\category.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="btn_apply" datatype="html">
+        <source>apply</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\facets\gategory\category.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="h4_msg_title" datatype="html">
+        <source>Adding new Comment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\add-review\add-review.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="p_msg_adding_comment" datatype="html">
+        <source>Your comment has been added</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\add-review\add-review.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="p_msg_no_comment" datatype="html">
+        <source>please enter Your comment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\add-review\add-review.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="h2_add_review" datatype="html">
+        <source>add review</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\add-review\add-review.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="btn_add_comment" datatype="html">
+        <source>add comment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\add-review\add-review.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+
+
+
+      <trans-unit id="spn_add_to_favorites" datatype="html">
+        <source>Add to Favorites</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\details\details.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="spn_favorite" datatype="html">
+        <source>Favorite</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\details\details.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spn_share" datatype="html">
+        <source>share</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\details\details.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="spn_borrow" datatype="html">
+        <source>borrow</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\details\details.component.html</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="spn_filter" datatype="html">
+        <source>filter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\items-view\items-view.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="spn_sort" datatype="html">
+        <source>sort</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\items-view\items-view.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spn_view" datatype="html">
+        <source>View</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\items-view\items-view.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="lbl_list" datatype="html">
+        <source>list</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\items-view\items-view.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="lbl_listView" datatype="html">
+        <source>list</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\items-view\items-view.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="lbl_grid" datatype="html">
+        <source>Grid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\items-view\items-view.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="h2_rating_reviews" datatype="html">
+        <source>rating and reviews</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\review-rating\review-rating.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="spn_more_review" datatype="html">
+        <source>more reviews</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\review-rating\review-rating.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+
+
+
+        <trans-unit id="lbldateFrom" datatype="html">
+        <source>DateFrom</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\review-rating\review-rating.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+
+<trans-unit id="lbldateTo" datatype="html">
+        <source>DateTo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\review-rating\review-rating.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+
+
+
+
+    </body>
+  </file>
+</xliff>

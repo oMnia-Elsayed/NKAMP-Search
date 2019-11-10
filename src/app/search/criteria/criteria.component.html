@@ -1,0 +1,91 @@
+<form [formGroup]="criteriaForm" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="mb-3 col-12 col-sm-12 col-md-2 col-lg-2">
+      <select formControlName="dataSourceFC" class="form-control w-100" (change)="changeDataSourceItem($event)">
+        <option *ngFor="let general of DataSources" [ngValue]="general.id" [selected]="general.id === '10f05e71-c6d2-4de3-a0df-e910bbb3942b'">
+          {{ lang == 'ar' || lang=='ar-SA'  ?  general.aName :  (lang == 'fr'? general.fName :general.eName )}}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+      <!-- Dynamic Form ##Start##  -->
+      <ng-container formArrayName="searchadd"
+        *ngFor="let search of criteriaForm.get('searchadd')['controls']; let formIndex = index">
+        <div *ngIf="isAdvanced || formIndex==0" class="form-row" [formGroupName]="formIndex">
+          <div *ngIf="formIndex>0" class="form-group col-4  col-sm-3  col-md-1 col-lg-1">
+            <select formControlName="operator" class="form-control  w-100">
+              <option [ngValue]="'AND'" selected="selected" i18n="@@lbl_and"> and </option>
+              <option [ngValue]="'OR'" i18n="@@lbl_or"> or </option>
+            </select>
+          </div>
+
+          <div class="form-group" [ngClass]="{
+              'col-12 col-sm-12 col-md-4 col-lg-3': formIndex == 0 ,
+              'col-4 col-sm-4 col-md-3 col-lg-2':  formIndex > 0
+            }">
+            <select formControlName="facetFC" class="form-control w-100" (change)="changeFacetFC($event, searchKeyword)">
+              <option *ngFor="let Feild of searchKeyword" id="{{Feild.id}}" [selected]="Feild.id === '7cb61ddc-9927-4b5e-b6b1-0855de3bb75f'">
+                {{lang == 'ar'||lang=='ar-SA'  ?  Feild.aName :  (lang == 'fr' ? Feild.fName :Feild.eName )}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-3  col-lg-3" [ngClass]="{ 'col-12 col-sm-12': formIndex == 0
+              ,'col-4 col-sm-4':  formIndex > 0  }">
+            <select formControlName="searchOperationFC" class="form-control  w-100" (change)="changeOperationId($event)">
+              <option [ngValue]="null" selected="selected" i18n="@@lblsearch_Containes">Containes</option>
+              <option *ngFor="let contain of myOperations" [ngValue]="contain.id">
+                {{lang == 'ar'||lang=='ar-SA'  ?  contain.aName :  (lang == 'fr'? contain.fName :contain.eName )}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group col-12 " [ngClass]="{
+              'col-sm-12 col-md-5 col-lg-6 ': !isAdvanced ,
+              'col-sm-11 col-md-4 col-lg-5 ': isAdvanced}">
+            <input type="text" formControlName="searchTextFC" class="form-control w-100"
+              [ngClass]="{'is-invalid':  (search.get('searchTextFC').invalid && search.get('searchTextFC').dirty)||(search.get('searchTextFC').invalid && search.get('searchTextFC').touched)} "
+              i18n-placeholder="@@lblsearch_placeholder" placeholder="Searchtext">
+            <div class="invalid-feedback"
+              *ngIf="(search.get('searchTextFC').invalid && search.get('searchTextFC').dirty)||(search.get('searchTextFC').invalid && search.get('searchTextFC').touched)">
+              <p *ngIf="search.get('searchTextFC').errors['required']" i18n="@@lblsearch_errortext">Please Enter Search
+                Text</p>
+            </div>
+          </div>
+
+          <div *ngIf="isAdvanced && formIndex==0"
+            class="form-group col-3 offset-9 col-sm-1 offset-sm-0 col-md-1 col-lg-1  text-center">
+            <button type="button" (click)="addSearchButtonClick()" class="btn btn-outline-primary searchNK-addFromBtn">
+              <span class="d-none d-sm-block">+</span>
+              <span class=" d-sm-none " i18n="@@lbl_add">add</span>
+            </button>
+          </div>
+          <div *ngIf="formIndex>0"
+            class="form-group col-3 offset-9 col-sm-1 offset-sm-0 col-md-1 col-lg-1  text-center">
+            <button type="button" (click)="removeCurrentRowClick(formIndex);"
+              class="btn btn-outline-primary searchNK-removeFromBtn">
+              <span class="d-none d-sm-block">-</span>
+              <span class="d-sm-none " i18n="@@lbl_remove">remove</span>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+      <!-- Dynamic Form ##End##  -->
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-12  col-sm-2 offset-sm-8 d-flex justify-content-end">
+      <button type="button" *ngIf="isAdvanced" class="btn btn-link searchNK-changeStateBtn"
+        (click)="onClickChangeToSimpleSearch()" i18n="@@lblsearch_simplesearch">Simple Search</button>
+      <button type="button" *ngIf="!isAdvanced" class="btn btn-link searchNK-changeStateBtn"
+        (click)="isAdvanced=!isAdvanced" i18n="@@lblsearch_advancedSearch">AdvancedSearch</button>
+    </div>
+    <div class="form-group col-12 col-sm-2">
+      <button type="submit" [disabled]="criteriaForm.invalid" [ngClass]="{'cursor-disable': criteriaForm.invalid }"
+        class="btn btn-primary searchNK-searchBtn" i18n="@@lblsearch">Search</button>
+    </div>
+  </div>
+
+</form>

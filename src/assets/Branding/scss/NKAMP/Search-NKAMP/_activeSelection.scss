@@ -1,0 +1,43 @@
+.searchNK .activeSelection {
+    @include clearfix;
+    padding: rem(20) rem(15);
+    background-color: $search-gray-e;
+    margin-bottom: rem(20);
+    font-size: rem(12);
+
+    &-title {
+        font-size: rem(12);
+        font-weight: bold;
+    }
+
+    &-items {
+        list-style: none;
+        padding: 0;
+    }
+
+    &-item {
+        @include clearfix;
+        font-weight: 600;
+        color: $txt3;
+        margin-bottom: rem(10);
+
+        .btn-icon {
+            color: #FF0000;
+            float: #{$left};
+        }
+
+        .text{
+            width: calc(100% - 20px);
+            padding-#{$left}: 8px;
+            display: inline-block;
+            padding-top: 5px;
+        }
+    }
+
+    &-clear {
+        font-size: rem(12);
+        color: #C1C1C1;
+        float: $right;
+    }
+
+}

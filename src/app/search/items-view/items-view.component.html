@@ -1,0 +1,131 @@
+<!--  fillter -->
+<div class="form-row items-view">
+  <div class="form-group col-3 col-sm-2 d-md-block d-lg-none">
+    <button type="button" class="btn btn-link filterBtn" (click)="ToggleOpenClass()">
+      <svg class="icon" data-name="icon - filter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.017 11.871">
+        <path id="Path_74" data-name="Path 74"
+          d="M13.016,22.82H0l4.849,5.109v6.762l3.318-1.716V27.929ZM5.343,33.878V27.732L1.151,23.314H11.865L7.673,27.732v4.942Z"
+          transform="translate(0 -22.82)" /> </svg>
+      <span i18n="@@spn_filter">Filter</span>
+    </button>
+  </div>
+
+  <div class="form-group col-4 col-md-3 d-lg-block">
+    <label class="sortLabel" for="inputCity">
+      <span i18n="@@spn_sort">Sort</span>
+    </label>
+    <svg class="icon sortIcon" xmlns="http://www.w3.org/2000/svg" width="11.409" height="12.414"
+      viewBox="0 0 11.409 12.414">
+      <g id="exchange" transform="translate(0 12.414) rotate(-90)">
+        <g id="Group_294" data-name="Group 294" transform="translate(0 0)">
+          <g id="Group_293" data-name="Group 293">
+            <path id="Path_72" data-name="Path 72"
+              d="M9.035,5.431l.547.547L12.3,3.262a.388.388,0,0,0,0-.547L9.582,0,9.035.551,11.091,2.6H0v.776H11.091Z"
+              transform="translate(0)" />
+            <path id="Path_73" data-name="Path 73"
+              d="M12.414,2.6H1.323L3.379.551,2.828,0,.113,2.715a.388.388,0,0,0,0,.547L2.828,5.978l.547-.547L1.323,3.379H12.414Z"
+              transform="translate(0 5.431)" />
+          </g>
+        </g>
+      </g>
+    </svg>
+    <select class="form-control CustomSelect" (change)="onChangeSort($event)">
+      <option selected="selected" i18n="@@spn_sort">sort </option>
+      <option i18n="@@lblsearch_Containes" [value]="'null'">select </option>
+      <option *ngFor="let keyWord of searchKeywords" [value]="keyWord.id">
+        {{lang == 'ar'||lang=='ar-SA'  ?  keyWord.aName :  (lang == 'fr'? keyWord.fName :keyWord.eName )}}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group col-md-2 d-md-none d-none  d-lg-block">
+    <label for="inputState" i18n="@@lbl_list">List</label>
+    <select class="form-control" (change)="onChangePageSize($event)">
+      <option [value]="12"> 12</option>
+      <option [value]="24"> 24</option>
+      <option [value]="48"> 48</option>
+      <option [value]="96"> 96</option>
+    </select>
+  </div>
+
+  <div class="form-group col-5 col-sm-7">
+    <label class="view-title" i18n="@@spn_view">View</label>
+    <div class="d-flex justify-content-end">
+      <button class="grid-btn" type="button" [ngClass]="{' active': displayMode === 1}"
+        (click)="onDisplayModeChange(1)">
+        <span i18n="@@lbl_grid"> Grid</span>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon"
+          viewBox="0 0 14 13.125">
+          <defs>
+            <clipPath id="clip-path">
+              <rect width="14" height="13.125" fill="none" />
+            </clipPath>
+          </defs>
+          <g data-name="Icon - Grid" clip-path="url(#clip-path)">
+            <g transform="translate(-529 -225)">
+              <rect data-name="Rectangle 78" width="6" height="6" transform="translate(529 225)" fill="#333" />
+            </g>
+            <g transform="translate(-521 -225)">
+              <rect data-name="Rectangle 78" width="6" height="6" transform="translate(529 225)" fill="#333" />
+            </g>
+            <g transform="translate(-529 -217)">
+              <rect data-name="Rectangle 78" width="6" height="6" transform="translate(529 225)" fill="#333" />
+            </g>
+            <g transform="translate(-521 -217)">
+              <rect data-name="Rectangle 78" width="6" height="6" transform="translate(529 225)" fill="#333" />
+            </g>
+          </g>
+        </svg>
+      </button>
+
+      <button class="list-btn" type="button" [ngClass]="{'active': displayMode === 2}" (click)="onDisplayModeChange(2)">
+        <span i18n="@@lbl_list">List</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 14 13.611">
+          <g data-name="Icon - List" transform="translate(0 1)">
+            <line data-name="Line 2" x1="10.279" transform="translate(3.721)" fill="none" stroke="#333"
+              stroke-width="2" />
+            <line data-name="Line 5" x1="2.806" fill="none" stroke="#333" stroke-width="2" />
+            <line data-name="Line 3" x1="10.279" transform="translate(3.721 5.805)" fill="none" stroke="#333"
+              stroke-width="2" />
+            <line data-name="Line 6" x1="2.806" transform="translate(0 5.805)" fill="none" stroke="#333"
+              stroke-width="2" />
+            <line data-name="Line 4" x1="10.279" transform="translate(3.721 11.611)" fill="none" stroke="#333"
+              stroke-width="2" />
+            <line data-name="Line 7" x1="2.806" transform="translate(0 11.611)" fill="none" stroke="#333"
+              stroke-width="2" />
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+<!--  fillter -->
+<p-tabView class="search-tabs">
+  <p-tabPanel [header]="generalTXT" [selected]="true">
+    <div class="row">
+      <ng-container *ngFor="let item of itemsArr">
+        <app-grid class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1" [book-data]="item"></app-grid>
+        <app-list class="col-12 col-sm-12 col-md-12 col-lg-12" *ngIf="displayMode === 2" [book-data]="item"></app-list>
+      </ng-container>
+    </div>
+  </p-tabPanel>
+
+  <p-tabPanel [header]="singleMaterialType.name + ' ( ' + singleMaterialType.totalItems +' ) ' "
+    *ngFor="let singleMaterialType of materialTypes; let i = index">
+    <div class="row">
+      <ng-container *ngFor="let item of itemsArr">
+        <!-- <app-grid *ngIf="item.materialTypeId == singleMaterialType.Id" class="col-12 col-sm-6 col-md-4 col-lg-4"
+          [book-data]="item"></app-grid> -->
+          <app-grid class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1 && item.materialTypeId == singleMaterialType.Id" [book-data]="item"></app-grid>
+          <app-list class="col-12 col-sm-12 col-md-12 col-lg-12" *ngIf="displayMode === 2 && item.materialTypeId == singleMaterialType.Id" [book-data]="item"></app-list>
+      </ng-container>
+    </div>
+  </p-tabPanel>
+</p-tabView>
+
+<div class="paginationContainer">
+  <ngb-pagination class="d-flex justify-content-center searchNk-paginate" (pageChange)="paginate($event)"
+    [collectionSize]="collectionSizeT" [pageSize]="pageSize" [(page)]="pageIndex" [maxSize]="4" [rotate]="true"
+    [boundaryLinks]="true">
+  </ngb-pagination>
+</div>

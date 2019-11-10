@@ -1,0 +1,169 @@
+$main-color:$pri;
+$main2-color:$sec;
+
+.controlRC {
+    font-family: arial;
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    padding-top: 3px;
+    cursor: pointer;
+    font-size: 17px;
+
+    input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    // &:hover input~.controlRC_indicator,
+    // input:focus~.controlRC_indicator {
+    //     background: #cccccc;
+    // }
+
+    input:checked~.controlRC_indicator {
+        background: #ffffff;
+
+        &:after {
+            display: block;
+        }
+    }
+
+    &:hover input:not([disabled]):checked~.controlRC_indicator,
+    input:checked:focus~.controlRC_indicator {
+        // background: #0e6647d;
+    }
+
+    input:disabled~.controlRC_indicator {
+        background: #e6e6e6;
+        opacity: 0.6;
+        pointer-events: none;
+        border-color: #bbb;
+    }
+
+    &.is-secondary {
+
+        input[type="rdaio"]~.controlRC_indicator {
+            border-color: $main2-color;
+        }
+
+        // &.controlRC-radio .controlRC_indicator {
+        //     border-color: $main2-color;
+        // }
+
+        input[type="checkbox"]~.controlRC_indicator:after,
+        .controlRC_indicator:after {
+            background: $main2-color;
+        }
+    }
+
+    input[type="checkbox"] {
+        &~.controlRC_indicator {
+            border-radius: 5px;
+            background: #fff;
+            border: 1px solid #ccc;
+            height: 21px;
+            width: 21px;
+
+            &::after {
+                left: 3px;
+                top: 3px;
+                height: 13px;
+                width: 13px;
+                border-radius: 2px;
+                background: $main-color;
+            }
+        }
+
+        &:disabled~.controlRC_indicator:after {
+            background: #7b7b7b;
+        }
+    }
+
+    input[type="radio"] {
+        &~.controlRC_indicator {
+            border-radius: 50%;
+
+            &::after {
+                left: 4px;
+                top: 4px;
+                height: 9px;
+                width: 9px;
+                border-radius: 50%;
+                background: $main-color;
+            }
+        }
+
+        &:disabled~.controlRC_indicator:after {
+            background: #7b7b7b;
+        }
+    }
+
+
+    .controlRC_indicator {
+        position: absolute;
+        top: 4px;
+        left: 0;
+        height: 23px;
+        width: 23px;
+        background: #e6e6e6;
+        border: 3px solid $main-color;
+
+        &:after {
+            box-sizing: unset;
+            content: '';
+            position: absolute;
+            display: none;
+        }
+
+
+    }
+
+}
+
+
+
+// .controlRC-radio {
+//     .controlRC_indicator {
+//         border-radius: 50%;
+
+//         &::after {
+//             left: 4px;
+//             top: 4px;
+//             height: 9px;
+//             width: 9px;
+//             border-radius: 50%;
+//             background: $main-color;
+//         }
+//     }
+
+
+//     input:disabled~.controlRC_indicator:after {
+//         background: #7b7b7b;
+//     }
+// }
+
+
+// <div class="controlRC-group">
+//     <label class="controlRC">
+//         First radio
+//         <input type="radio" name="radio" checked="checked" />
+//         <div class="controlRC_indicator"></div>
+//     </label>
+//     <label class="controlRC">
+//         Second checkbox
+//         <input type="checkbox" name="checkbox" />
+//         <div class="controlRC_indicator"></div>
+//     </label>
+//     <label class="controlRC">
+//         Disabled
+//         <input type="radio" name="radio2" disabled="disabled" />
+//         <div class="controlRC_indicator"></div>
+//     </label>
+//     <label class="controlRC">
+//         Disabled & checked
+//         <input type="radio" name="radio2" disabled="disabled" checked="checked" />
+//         <div class="controlRC_indicator"></div>
+//     </label>
+//  </div>

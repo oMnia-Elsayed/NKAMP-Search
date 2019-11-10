@@ -1,0 +1,42 @@
+// Branding Variables
+
+// $primary-base:   #007bff; // ==== $primary  ====
+// $secondary-base: #6c757d; // ==== secondary ====
+// $success-base:   #28a745; // ==== success   ====  
+// $info-base:      #17a2b8; // ==== info      ====     
+// $warning-base:   #ffc107; // ==== warning   ====  
+// $danger-base:    #dc3545; // ==== danger    ====
+// $light-base:     #f8f9fa; // ==== light     ====
+// $dark-base:      #343a40; // ==== dark      ==== 
+
+// $txt		: #333333;
+// $txt2	: #fff;
+// $txt2	: #FFFFFF; $white
+// $txt3	: #999999;
+// $icons   : #f7ffe8;
+
+// Search NKAMP Variables 
+$search-border: #D2D2D2;
+$search-txt : $txt;
+$search-txt3: $txt3;
+$search-base-color: $pri;
+$search-gray-e: #EEEEEE;
+$search-grey-6: #666666; 
+$controlHeight: 30px;
+
+
+@import "result";                                       // Ahmed Elbaz  - 07-04-2018
+@import "criteria";                                     // Ahmed Elbaz  - 08-04-2018
+// Prefer Using :: "_radioButtonRC"  from reuable components instead of this partial 
+@import "radioButtonRC";                                // Ahmed Elbaz  - 03-05-2018
+@import "facets";                                       // Ahmed Elbaz  - 05-05-2018
+@import "activeSelection";                              // Ahmed Elbaz  - 06-05-2018  
+@import "bookDetails";                                  // Hager Essa   - ##-05-2018
+@import "bookRatingAndReview";                          // Hager Essa   - ##-05-2018
+@import "addReview";                                    // Hager Essa   - ##-05-2018
+@import "favoriteItems";                                // Hager Essa   - ##-05-2018
+@import "favoriteSearch";                               // Hager Essa   - ##-05-2018
+@import "digitalLibrarySearch";                         // Hager Essa   - ##-05-2018
+@import "digitalLibraryResult";                         // Hager Essa   - ##-05-2018
+@import "criteriaSaved";                                // Hager Essa   - ##-05-2018
+@import "searchResultsTabs";                            // Ahmed Elbaz  - 16-06-2018

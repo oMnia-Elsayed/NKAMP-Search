@@ -1,0 +1,52 @@
+// /*
+// * custom branding
+// * Author  :: Ahmed elbaz
+// * Version :: 4.0.4
+// * LinkedIn:: in/elbazz
+// * Mail    :: ahmed.elbazz.2010@gmail.com
+// */ 
+// ### =======================  [ Configrations ] ========================== ### //     
+// $mainSiteLang : ar; // active the next variable if you want arabic direction
+// ### ===================================================================== ### //   
+// ### =============================  [ Base ] ============================= ### //  
+@import "Base/initial";       // ::=> Set this partail to defined new style 
+@import "Base/base";          // ::=> Dont repeat this partail 
+
+// ### ===================================================================== ### // 
+// ### ============================  [ Vendors ] =========================== ### //  
+// [^\$](left|right|rtl|ltr)[^\}]                     // Partail Author  - MM-DD-YY
+@import "Vendors/dynamicBootstrap4/bootsrtap";
+
+// ### ===================================================================== ### // 
+// ### ======================  [ Reusable Components ] ===================== ### //  
+// @import "ReusableComponents/reusable-faq";
+// @import "ReusableComponents/opinionPoll-circles";
+// @import "ReusableComponents/opinionPoll-bars";
+// @import "ReusableComponents/newsRC";
+// @import "ReusableComponents/radioButtonRC";
+
+// ### ===================================================================== ### // 
+// ### =======================  [ NKAMP Components  ] ====================== ### //  
+@import "NKAMP/Search-NKAMP/base";
+
+
+// ### ===================================================================== ### // 
+// ### ======================  [ SharePoint Modules ]  ===================== ### // 
+// @import "SharePoint/breadcrumb";
+
+// ### ===================================================================== ### // 
+// ### ============================  [ Layouts ] =========================== ### // 
+// @import "Layouts/homePage";                          // Ahmed Elbaz  - 7-11-2018 
+
+
+// ### ===================================================================== ### // 
+// ### ============================  [ Modules ] =========================== ### // 
+// ###  ====  [ General ]  
+// @import "Modules/header";                           // Ahmed Elbaz  - 05-18-2018
+
+// ###  ====  [ Home Page ]  
+// @import "Modules/news";                           // Ahmed Elbaz  - 05-18-2018
+
+
+// ###  ====  [ inner Pages ]  
+// @import "Modules/innerPages";  

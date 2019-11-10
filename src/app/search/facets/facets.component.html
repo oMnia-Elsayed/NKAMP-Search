@@ -1,0 +1,7 @@
+<app-active-selection></app-active-selection>
+<ng-container *ngFor="let facetOption of this.facetFieldsOptions;let idx = index">
+
+  <app-category *ngIf="facetOption.values" [facetOption]="facetOption"></app-category>
+
+</ng-container>
+

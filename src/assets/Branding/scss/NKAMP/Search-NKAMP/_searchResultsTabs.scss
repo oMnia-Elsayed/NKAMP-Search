@@ -1,0 +1,41 @@
+body .searchNK .ui-widget {
+    font-family: inherit;
+}
+.searchNK .search-tabs {
+    .ui-tabview {
+        padding: 0;
+    }
+
+    .ui-tabview.ui-tabview-top .ui-tabview-nav {
+        border-bottom: 2px solid $txt3;
+
+        li {
+            float: $left;
+            margin: 0;
+            margin-#{$right}: rem(30);
+            background-color: transparent !important;
+            border: none !important;
+            outline: 0;
+            border-radius: 0;
+
+            &.ui-state-active {
+                border-bottom: 2px solid $pri !important;
+                a {
+                    color: $txt;
+                }
+            }
+
+            a {
+                color: $txt3;
+                font-size: rem(12);
+                padding: rem(10) 0;
+            }
+
+        }
+    }
+
+    .ui-tabview .ui-tabview-panels{
+        border: 0;
+        padding:rem(25) 0 0 0;
+    }
+}

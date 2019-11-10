@@ -1,0 +1,61 @@
+<div class="facet">
+  <div class="facet-header">
+    <p class="border-bottom d-flex facet-title mb-2">
+      <button type="button" (click)="this.isVituailizationActive = false"
+        class="btn btn-link col is-active p-0 text text-left">
+        {{ lang == 'ar' || lang=='ar-SA'  ?  facetOption.aName :  (lang == 'fr'? facetOption.fName :facetOption.eName )}}
+      </button>
+      <button *ngIf="this.config.isVituailization" type="button" (click)="this.isVituailizationActive = true"
+        class="btn btn-link col text" i18n="@@btn_visual">
+        Visual
+      </button>
+    </p>
+
+    <span (click)="isCollapsed=!isCollapsed" class="facet-collapseIcon " [ngClass]="{'is-collapsed': this.isCollapsed}">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 9.415 6.128">
+        <path d="M4,0,0,3.925,4,8" transform="translate(0.714 4.714) rotate(-90)" fill="none" stroke-width="2" />
+      </svg>
+    </span>
+  </div>
+
+  <p-chart *ngIf="this.isVituailizationActive && !this.isCollapsed"
+    type="{{this.config.isPiChart?'horizontalBar':'bar'}}" height="{{30*this.facetOption.values.length}}px"
+    [data]="data"></p-chart>
+  <!-- <p-chart *ngIf="this.isVituailizationActive" type="{{this.config.isPiChart?'pie':'bar'}}" [data]="data"></p-chart> -->
+
+  <ng-container *ngIf="!this.isVituailizationActive && !this.isCollapsed">
+    <div class="facet-controls">
+      <!-- <span (click)="selectAll()">selectall</span> -->
+      <label class="controlRC">
+        <!-- *ngIf="this.config.isAllowMultiSelection" -->
+        <span class="text" i18n="@@lbl_select_all">Select all</span>
+        <span class="count float-right">{{this.totalOfAllItems}}</span>
+        <input type="checkbox" name="facet_name" value="selectAll" [(ngModel)]="masterSelected"
+          (change)="checkUncheckAll()" />
+        <div class="controlRC_indicator"></div>
+      </label>
+
+      <ng-container *ngIf="facetOption.values.length > 0" >
+        <ng-container *ngFor="let item of checklist;let idx = index">
+          <label class="controlRC" *ngIf="idx < maxShowing || this.showAll">
+            <span class="text" *ngIf="facetOption.values[idx] !== undefined">{{facetOption.values[idx].facetValue}}</span>
+            <span class="count float-right" *ngIf="facetOption.values[idx] !== undefined">{{facetOption.values[idx].totalItems}}</span>
+            <input type="checkbox" id={{item.id}} [(ngModel)]="item.isSelected" (change)="isAllSelected()" name="{{'checkbox'+idx}}" />
+            <div class="controlRC_indicator"></div>
+          </label>
+        </ng-container>
+      </ng-container>
+    </div>
+
+    <button *ngIf="  this.facetOption.values.length > maxShowing " type="button" class="btn btn-link p-0 mb-4"
+      (click)="this.showAll=!this.showAll">
+      <span *ngIf="!this.showAll" i18n="@@spn_show_more">Show More </span>
+      <span *ngIf="this.showAll" i18n="@@spn_show_less">Show Less </span>
+    </button>
+
+    <button type="button" class="btn btn-primary w-100" [ngClass]="{'cursor-disable': this.checkedList.length < 1 }"
+      disabled="{{this.checkedList.length < 1 ? 'disabled' : ''}}" (click)="onSubmit()" i18n="@@btn_apply">
+      Apply
+    </button>
+  </ng-container>
+</div>

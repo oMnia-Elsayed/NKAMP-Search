@@ -1,0 +1,59 @@
+//==  branding from css to root branding 
+$branding-path:'../../'; 
+
+$default-behaviour : true ; //  true or false
+$fa : FontAwesome;
+$mdi: 'Material Design Icons';
+//== font-families
+//
+// font family 
+$font-family-default: 'SegoeUI', sans-serif;
+$font-numbers-default : Myriad Pro, Arial, sans-serif;
+$fonts-map-default: (
+    (
+        family: 'SegoeUI',
+        weight: 200,
+        path: 'SegoeUI/SegoeUI-Light'
+    ),
+    (
+        family: 'SegoeUI',
+        weight: 400,
+        path: 'SegoeUI/SegoeUI'
+    ),
+     (
+        family: 'SegoeUI',
+        weight: 600,
+        path: 'SegoeUI/SegoeUI-SemiBold'
+    ),
+     (
+        family: 'SegoeUI',
+        weight: 700,
+        path: 'SegoeUI/SegoeUI-Bold'
+    )
+); 
+// font family 
+$font-family-reverse: 'Cairo', sans-serif;
+$font-numbers-reverse : Myriad ar, Arial, sans-serif;
+$fonts-map-reverse: (
+    (
+        family: 'Cairo',
+        weight: 200,
+        path: 'cairo/Cairo-Light'
+    ),
+    (
+        family: 'Cairo',
+        weight: 400,
+        path: 'cairo/Cairo-Regular'
+    ),
+     (
+        family: 'Cairo',
+        weight: 600,
+        path: 'cairo/Cairo-SemiBold'
+    ),
+     (
+        family: 'Cairo',
+        weight: 700,
+        path: 'cairo/Cairo-Bold'
+    )
+); 
+ 

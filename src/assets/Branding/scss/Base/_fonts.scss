@@ -1,0 +1,10 @@
+﻿
+$fonts-map: ((family: 'Cairo',
+weight: 200,
+path: 'cairo/Cairo-Ligth'
+)) !default;
+ 
+@each $font in $fonts-map {
+    $name: map-get($font, family);$weight: map-get($font, weight);$path: map-get($font, path);
+    @include setFontFamily($fFamily: #{$name}, $fWeight: #{$weight}, $fFace-path: #{$path});
+}

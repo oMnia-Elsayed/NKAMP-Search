@@ -1,0 +1,14 @@
+ @mixin fullColumnWidth-isSmallMobile() {
+     @include breakpoint(isSmallMobile) {
+
+         [class^="col-xs-"],
+         [class*="col-xs-"] {
+             width: 100% !important;
+         }
+
+         [class^="col-xs-offset"],
+         [class*="col-xs-offset"] {
+             margin: auto !important;
+         }
+     }
+ }

@@ -1,0 +1,85 @@
+$main-color: $pri;
+$border-color: #CCCCCC;
+$icons-color: #999999;
+
+
+//  main 
+.newsRC {
+    font-size: rem(14);
+    margin-bottom: 1.3em;
+
+    l-#{&} {
+        position: relative;
+    }
+
+    border: 1px solid $border-color;
+    padding: em(15, 14) ;
+
+    &-image {
+        margin-bottom: rem(15);
+        background-color: $border-color;
+        height: rem(125);
+
+        img {
+            background-size: cover;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &-date {
+        font-size: 1.2em;
+        position: relative;
+
+        svg.icon {
+            margin-#{$right}: em(5, 14);
+            color: $icons-color;
+        }
+
+        &:after {
+            @include pseudo();
+            @include abs($t: 100%, $l:0);
+            width: em(120, 14);
+            height: 1px;
+            background-color: lighten($icons-color, 87);
+        }
+
+    }
+
+    &-body {
+        height: em(130, 14);
+    }
+
+    &-title {
+        font-size: 1em;
+        font-weight: 500;
+        color: $main-color;
+        margin-bottom: em(10, 14);
+        line-height: 1.2;
+        display: inline-block;
+        @include trans($property: color);
+
+        &:hover,
+        &:focus {
+            color: darken($main-color, 5%);
+            text-decoration: none;
+        }
+
+    }
+
+    &-text {
+        font-size: em(12, 14);
+        margin-bottom: 0;
+    }
+
+    //  Hover Case
+    &:hover,
+    &:focus {
+        .newsRC-title {
+            color: darken($main-color, 5%);
+            text-decoration: none;
+        }
+    }
+
+}

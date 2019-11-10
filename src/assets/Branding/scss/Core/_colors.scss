@@ -1,0 +1,40 @@
+// Body
+//
+// Settings for the `<body>` element.
+$body-bg: #fff;
+$body-color: #212529;
+
+// Links
+// Style anchor elements.
+$link-color: #FF6600;
+$link-decoration: none;
+$link-hover-color: #FF6600;// darken($link-color, 15%);
+$link-hover-decoration: underline;
+
+// Bootsrtap themes colors
+// =======================
+$primary-base:   #007bff; // ==== $primary  ====
+$secondary-base: #6c757d; // ==== secondary ====
+$success-base:   #28a745; // ==== success   ====  
+$info-base:      #17a2b8; // ==== info      ====     
+$warning-base:   #ffc107; // ==== warning   ====  
+$danger-base:    #dc3545; // ==== danger    ====
+$light-base:     #f8f9fa; // ==== light     ====
+$dark-base:      #343a40; // ==== dark      ==== 
+
+// ====================  Projects Colors
+$primary-base:   #FF6600;   //##// $primary
+$secondary-base: #0080FF; //##// secondary:
+// Font weight
+// 200: Light
+// 400: Normal(Regular) 
+// 600: SemiBold 
+// 700: Bold 
+
+$txt		: #333333;
+$txt2		: #fff;
+$txt3		: #999999;
+$icons      : #f7ffe8;
+
+// // =====> general
+$section-bg: #eee;

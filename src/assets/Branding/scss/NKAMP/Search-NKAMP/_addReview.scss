@@ -1,0 +1,76 @@
+.addReview{
+    background-color: $search-gray-e;
+    padding: 30px 0px;
+    @include bp(xs) // min 576
+    {  
+        padding: 41px 0px;
+    } 
+    .d-inline-flex{
+        outline: none;
+        color: $search-base-color;
+    }
+    .modal{
+        &.fade{
+            .modal-dialog{
+                transition: transform 0.0s ease-out;
+            }
+        }
+    }
+    .fade{
+        transition: opacity 0s linear;
+    }
+
+    &-title{
+        font-size: 18px;
+        margin-bottom: rem(7);
+        @include bp(xs) // min 576
+        {  
+            margin-bottom: rem(15);
+        } 
+        
+    }
+    &-rating{
+        margin-bottom: rem(24);
+        @include bp(xs) // min 576
+        {  
+            margin-bottom: rem(27);
+        } 
+    }
+    &-comment{
+        margin-bottom: rem(16);
+        @include bp(xs) // min 576
+        {  
+            margin-bottom: rem(28);
+        } 
+        &-area{
+            height: rem(158);
+            resize: none;
+            outline: none;
+        }
+    }
+    &-btn{
+        padding:rem(7) rem(0);
+        color: $txt2;
+        background-color: $pri;
+        outline: none;
+        border: rem(0); 
+        font-size: rem(12);
+        cursor: pointer;
+        &:hover, &:focus, &:active{
+            outline: none; 
+        }
+        width: 100%;
+        @include bp(xs) // min 576
+        {  
+            width: rem(150);
+        } 
+        @include bp(md) // min 992  
+        {  
+            width: rem(210);
+        }
+        @include bp(lg) //  min  1200
+        {  
+            width: rem(218);
+        }
+    }
+}

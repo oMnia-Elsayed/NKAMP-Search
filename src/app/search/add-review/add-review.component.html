@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <ng-template #content let-c="close" let-d="dismiss">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title" i18n="@@h4_msg_title" >Adding new Comment</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" *ngIf="isAdded">
+              <p i18n="@@p_msg_adding_comment" >Your comment has been added</p>
+            </div>
+            <div class="modal-body" *ngIf="!isAdded">
+              <p i18n="@@p_msg_no_comment" > please enter Your comment </p>
+            </div>
+          </ng-template>
+
+      <h2 class="addReview-title no-padding no-margin" i18n="@@h2_add_review">Add Review</h2>
+      <div class="addReview-rating">
+          <ngb-rating [(rate)]="currentRate" [max]="5" (click)="addRating()" [(ngModel)]="currentRate1"></ngb-rating>
+      </div>
+      <form (ngSubmit)="addComment(content)" #formEle="ngForm">
+          <div class="addReview-comment">
+              <textarea class="addReview-comment-area w-100 border-0"
+                        name="comment"
+                        id="commentReview"
+                        ngModel></textarea>
+          </div>
+          <button class="addReview-btn" type="submit" i18n="@@btn_add_comment">Add Comment</button>
+      </form>
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+[
+  {
+      "query_syntax": "{'dataSourcesId':['0B438369-C0DA-4A32-8C6F-103AB6FEADD2'],'searchKeyWords':[{'searchKeyWordId':'AA06F8E1-BF2C-42F6-8C01-AD6F0BF60E50','materialTypeId':'','keyWordValue':'art','searchOperationId':'','nextSearchKeyWordWithAnd':true},{'searchKeyWordId':'DF6C3D06-B99B-4D80-AB25-22B7B638FC81','materialTypeId':'','keyWordValue':'2018','searchOperationId':'3E9386EF-3B03-433B-A17E-3B11AD177AD0','nextSearchKeyWordWithAnd':false},{'searchKeyWordId':'AA06F8E1-BF2C-42F6-8C01-AD6F0BF60E50','materialTypeId':'','keyWordValue':'mark','searchOperationId':'','nextSearchKeyWordWithAnd':true}]}",
+      "query_name": "Search criteria name 1",
+      "anonymous": true,
+      "id": "rnPb4mkBBsIQctp5jb6s",
+      "userId": null,
+      "email": null
+  },
+  {
+      "query_syntax": "{'dataSourcesId':['0B438369-C0DA-4A32-8C6F-103AB6FEADD2','A641F684-00F6-4988-A052-B2FEFAB171C7','A641F684-00F6-4988-A052-B2FEFAB171C9'],'searchKeyWords':[{'searchKeyWordId':'1909145C-117E-48F3-9F5A-B699D011C619','materialTypeId':'','keyWordValue':'ddddddddddd','searchOperationId':'E58FB0BC-744C-4136-A4CE-A9A3736914FE','nextSearchKeyWordWithAnd':true},{'searchKeyWordId':'1909145C-117E-48F3-9F5A-B699D011C619','materialTypeId':'','keyWordValue':'saerch Text','searchOperationId':'AAD2C592-DC0D-4ED5-A5C7-6F0259C0498B','nextSearchKeyWordWithAnd':false}]}",
+      "query_name": "Search criteria name 10014520",
+      "anonymous": null,
+      "id": "r5dTwGoByCTS1-UEbvGP",
+      "userId": "hager1",
+      "email": null
+  },
+  {
+      "query_syntax": "{'dataSourcesId':['0B438369-C0DA-4A32-8C6F-103AB6FEADD2','A641F684-00F6-4988-A052-B2FEFAB171C7','A641F684-00F6-4988-A052-B2FEFAB171C9'],'searchKeyWords':[{'searchKeyWordId':'1909145C-117E-48F3-9F5A-B699D011C619','materialTypeId':'','keyWordValue':'ddddddddddd','searchOperationId':'E58FB0BC-744C-4136-A4CE-A9A3736914FE','nextSearchKeyWordWithAnd':true}],'pageSize':12,'searchProfileId':'1111-1111-1111-1111'}",
+      "query_name": "tea ",
+      "anonymous": false,
+      "id": "Uzt5BmoBNpoo7s4yxF9L",
+      "userId": "hager1",
+      "email": "abdfg@xyz.com"
+  },
+  {
+      "query_syntax": "{'dataSourcesId':['0B438369-C0DA-4A32-8C6F-103AB6FEADD2','A641F684-00F6-4988-A052-B2FEFAB171C7','A641F684-00F6-4988-A052-B2FEFAB171C9'],'searchKeyWords':[{'searchKeyWordId':'1909145C-117E-48F3-9F5A-B699D011C619','materialTypeId':'','keyWordValue':'ddddddddddd','searchOperationId':'E58FB0BC-744C-4136-A4CE-A9A3736914FE','nextSearchKeyWordWithAnd':true},{'searchKeyWordId':'E57FA2D0-921D-4E43-8487-DCEEDBB225F6','materialTypeId':'','keyWordValue':'search test 2','searchOperationId':'AAD2C592-DC0D-4ED5-A5C7-6F0259C0498B','nextSearchKeyWordWithAnd':false},{'searchKeyWordId':'AA06F8E1-BF2C-42F6-8C01-AD6F0BF60E50','materialTypeId':'','keyWordValue':'search test 3','searchOperationId':'','nextSearchKeyWordWithAnd':true}],'pageSize':12,'searchProfileId':'1111-1111-1111-1111'}",
+      "query_name": "ART  ",
+      "anonymous": false,
+      "id": "rnPb4mkBBsIQctp5jb6r",
+      "userId": "hager1",
+      "email": "abdfg@xyz.com"
+  },
+  {
+    "query_syntax": "{'dataSourcesId':['0B438369-C0DA-4A32-8C6F-103AB6FEADD2'],'searchKeyWords':[{'searchKeyWordId':'AA06F8E1-BF2C-42F6-8C01-AD6F0BF60E50','materialTypeId':'','keyWordValue':'art','searchOperationId':'','nextSearchKeyWordWithAnd':true},{'searchKeyWordId':'DF6C3D06-B99B-4D80-AB25-22B7B638FC81','materialTypeId':'','keyWordValue':'2018','searchOperationId':'3E9386EF-3B03-433B-A17E-3B11AD177AD0','nextSearchKeyWordWithAnd':false},{'searchKeyWordId':'AA06F8E1-BF2C-42F6-8C01-AD6F0BF60E50','materialTypeId':'','keyWordValue':'mark','searchOperationId':'','nextSearchKeyWordWithAnd':true}]}",
+    "query_name": "Search criteria name 456",
+    "anonymous": true,
+    "id": "rnPb4mkBBsIQctp5jb6s",
+    "userId": null,
+    "email": null
+},
+{
+    "query_syntax": "{'dataSourcesId':['0B438369-C0DA-4A32-8C6F-103AB6FEADD2','A641F684-00F6-4988-A052-B2FEFAB171C7','A641F684-00F6-4988-A052-B2FEFAB171C9'],'searchKeyWords':[{'searchKeyWordId':'1909145C-117E-48F3-9F5A-B699D011C619','materialTypeId':'','keyWordValue':'ddddddddddd','searchOperationId':'E58FB0BC-744C-4136-A4CE-A9A3736914FE','nextSearchKeyWordWithAnd':true},{'searchKeyWordId':'1909145C-117E-48F3-9F5A-B699D011C619','materialTypeId':'','keyWordValue':'saerch Text','searchOperationId':'AAD2C592-DC0D-4ED5-A5C7-6F0259C0498B','nextSearchKeyWordWithAnd':false}]}",
+    "query_name": "Search criteria name 10",
+    "anonymous": null,
+    "id": "r5dTwGoByCTS1-UEbvGP",
+    "userId": "hager1",
+    "email": null
+},
+{
+    "query_syntax": "{'dataSourcesId':['0B438369-C0DA-4A32-8C6F-103AB6FEADD2','A641F684-00F6-4988-A052-B2FEFAB171C7','A641F684-00F6-4988-A052-B2FEFAB171C9'],'searchKeyWords':[{'searchKeyWordId':'1909145C-117E-48F3-9F5A-B699D011C619','materialTypeId':'','keyWordValue':'ddddddddddd','searchOperationId':'E58FB0BC-744C-4136-A4CE-A9A3736914FE','nextSearchKeyWordWithAnd':true}],'pageSize':12,'searchProfileId':'1111-1111-1111-1111'}",
+    "query_name": "Search criteria name Search criteria name",
+    "anonymous": false,
+    "id": "Uzt5BmoBNpoo7s4yxF9L",
+    "userId": "hager1",
+    "email": "abdfg@xyz.com"
+},
+{
+    "query_syntax": "{'dataSourcesId':['0B438369-C0DA-4A32-8C6F-103AB6FEADD2','A641F684-00F6-4988-A052-B2FEFAB171C7','A641F684-00F6-4988-A052-B2FEFAB171C9'],'searchKeyWords':[{'searchKeyWordId':'1909145C-117E-48F3-9F5A-B699D011C619','materialTypeId':'','keyWordValue':'ddddddddddd','searchOperationId':'E58FB0BC-744C-4136-A4CE-A9A3736914FE','nextSearchKeyWordWithAnd':true},{'searchKeyWordId':'E57FA2D0-921D-4E43-8487-DCEEDBB225F6','materialTypeId':'','keyWordValue':'search test 2','searchOperationId':'AAD2C592-DC0D-4ED5-A5C7-6F0259C0498B','nextSearchKeyWordWithAnd':false},{'searchKeyWordId':'AA06F8E1-BF2C-42F6-8C01-AD6F0BF60E50','materialTypeId':'','keyWordValue':'search test 3','searchOperationId':'','nextSearchKeyWordWithAnd':true}],'pageSize':12,'searchProfileId':'1111-1111-1111-1111'}",
+    "query_name": "ART and football 4",
+    "anonymous": false,
+    "id": "rnPb4mkBBsIQctp5jb6r",
+    "userId": "hager1",
+    "email": "abdfg@xyz.com"
+}
+]

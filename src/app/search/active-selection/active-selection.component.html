@@ -1,0 +1,29 @@
+<div class="activeSelection" *ngIf="isShowing">
+  <h6 class="activeSelection-title" i18n="@@lbl_active_selection">
+    ACTIVE SELECTION
+  </h6>
+  <ul class="activeSelection-items">
+    <li class="activeSelection-item" *ngFor="let item of facetsObj">
+      <button type="button" class="btn btn-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 14.141 14.141">
+          <g id="Delete" transform="translate(-66 -284)">
+            <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(66 284)" fill="none" stroke-width="1">
+              <circle cx="7.07" cy="7.07" r="7.07" stroke="none" />
+              <circle cx="7.07" cy="7.07" r="6.57" fill="none" />
+            </g>
+            <line id="Line_26" data-name="Line 26" x2="5.499" y2="5.499" transform="translate(70.321 288.321)"
+              fill="none" stroke-width="1.2" />
+            <line id="Line_27" data-name="Line 27" x1="5.499" y2="5.499" transform="translate(70.321 288.321)"
+              fill="none" stroke-width="1.2" />
+          </g>
+        </svg>
+      </button>
+      <span class="text">
+        {{item.facetId}} = "{{item.facetValue}}"
+      </span>
+    </li>
+  </ul>
+  <button type="button" class="btn btn-link p-0 activeSelection-clear" i18n="@@btn_clear">
+    Clear
+  </button>
+</div>

@@ -1,0 +1,75 @@
+.searchNK .facet {
+    margin-bottom: rem(40);
+
+    &-header {
+        position: relative;
+
+    }
+
+    &-collapseIcon {
+        cursor: pointer;
+        position: absolute;
+        top: rem(10);
+        #{$right}: 0;
+        font-size: .75em;
+
+        &.is-collapsed {
+
+            @include default() {
+                transform: rotateZ(90deg);
+            }
+
+            @include reverse() {
+                transform: rotateZ(-90deg);
+            }
+        }
+    }
+
+    &-title {
+        color: $txt3;
+        font-weight: 700;
+        font-size: rem(12);
+        padding-bottom: rem(10);
+        border-bottom: 1px solid $search-border;
+
+        .text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+
+            &:nth-child(n+2)  {
+                border-#{$left}: 1px solid $search-border;
+            }
+
+            &.is-active {
+                color: $txt;
+            }
+        }
+
+
+    }
+
+    &-controls {
+        margin-bottom: rem(20);
+    }
+
+    // control 
+    .controlRC {
+        @include clearfix;
+        font-size: rem(12);
+        .text {
+            display: block;
+            width: calc(100% - 60px);
+            float: $left;
+        }
+
+        .count {
+            width: 60px;
+            text-align: $right;
+            padding-#{$left}: 5px;
+            display: inline-block;
+        }
+    }
+
+}

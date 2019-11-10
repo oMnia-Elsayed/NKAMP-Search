@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form (ngSubmit)="sendFavorite()" #formEle="ngForm">
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table class="table table-hover Favorite-table table-borderless">
+                <thead class="Favorite-table-head">
+                  <tr>
+                    <th class="Favorite-table-headItem">All</th>
+                    <th class="Favorite-table-headItem">Title</th>
+                    <th class="Favorite-table-headItem hideEle">Publisher</th>
+                    <th class="Favorite-table-headItem">Year</th>
+                    <th class="Favorite-table-headItem hideEle">Date</th>
+                    <th class="Favorite-table-headItem">
+                      <span class="hideheadEle">
+                        Action
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="Favorite-table-body">
+                  <tr *ngFor="let dataItem of alldate.hits.hits">
+                    <td>
+                      <label class="controlRC controlRC-radio d-block">
+                        <!-- First radio -->
+                        <input type="checkbox" name="radio" checked="checked" ngModel />
+                        <div class="controlRC_indicator"></div>
+                      </label>
+                    </td>
+                    <td>
+                      <p class="Favorite-table-title">
+                        {{dataItem._source.itemListPageInformation.title}}
+                      </p>
+                    </td>
+                    <td class="hideEle">
+                      <p class="Favorite-table-name">
+                        Name of the Author writern here
+                      </p>
+                    </td>
+                    <td>
+                      <div class="Favorite-table-year">
+                        {{dataItem._source.itemListPageInformation.createdDate| date: 'yyyy' }}
+                      </div>
+                    </td>
+                    <td class="hideEle">
+                      <div class="Favorite-table-date">
+                        {{dataItem._source.itemListPageInformation.createdDate}}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="Favorite-table-delete">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="9.928" height="12.764"
+                          viewBox="0 0 9.928 12.764">
+                          <path id="ic_delete_24px"
+                            d="M5.709,14.346a1.422,1.422,0,0,0,1.418,1.418H12.8a1.422,1.422,0,0,0,1.418-1.418V5.836H5.709ZM14.928,3.709H12.446L11.737,3H8.191l-.709.709H5V5.127h9.928Z"
+                            transform="translate(-5 -3)" fill="#d2d2d2" />
+                        </svg>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- <div class="paginationContainer">
+              <ngb-pagination class="d-flex justify-content-center searchNk-paginate" (pageChange)="paginate($event)"
+                [collectionSize]="9" [pageSize]="5" [page]="1" [maxSize]="4" [rotate]="true" [boundaryLinks]="true">
+              </ngb-pagination>
+            </div> -->
+
+            <!-- <div class="Favorite-pagination">
+                        <ngb-pagination [collectionSize]="20" [maxSize]="5" [pageSize]="2" [(page)]="page" [boundaryLinks]="true">
+                        </ngb-pagination>
+                     </div> -->
+          </div>
+          <div class="col-12">
+            <div class="Favorite-sendToEmail">
+              <button class="Favorite-btn Favorite-btnDownload">Download</button>
+              <input type="email" class="Favorite-input" name="email" placeholder="email@domainname.com" ngModel />
+              <button class="Favorite-btn Favorite-btnEmail">Send To Email</button>
+            </div>
+
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+
+  </div>
+</div>

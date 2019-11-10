@@ -1,0 +1,75 @@
+.Favorite-Search{
+    label:not(.Favorite-Search-sendLabel){
+        display: block;
+        font-size: rem(12);
+        color: $search-txt;
+        font-weight: normal;
+        margin-top: rem(15);
+        @include bp(xs) // min 576
+        {  
+            margin-top: rem(0);
+        } 
+    }
+    &-input{
+       width: 100%;
+       height: rem(30);
+       border: 1px solid $search-border;
+       border-radius: rem(1);
+       font-size: rem(12);
+       color: $search-txt3;
+       padding: rem(7) rem(10);  
+    }
+    &-input{
+        &.form-control{
+           border-right: rem(0);
+           font-size: rem(12);
+        }
+    }
+    .ngb-dp-day{
+        font-size: 0.75em;
+    }
+    .ngb-dp-weekday{
+        color:  $secondary-base;
+    }
+    .ngb-dp-week-number, .ngb-dp-weekday{
+        font-style: normal;
+    }
+    &-calenderBtn{
+        height: rem(30);
+        border: 1px solid $search-border;
+        border-left: rem(0);
+        padding-top: rem(0);
+        padding-bottom: rem(0);
+        line-height: 0.5;
+        &:hover, &:focus, &:active{
+            outline: none;
+        }
+        &.btn-outline-secondary:hover{
+            &:hover{
+                background-color: transparent;
+                border-color:  $search-border;
+            }
+        }
+    }
+    &-btn{
+        width: 100%;
+        height: rem(30);
+        background-color: $search-base-color;
+        outline: none; 
+        border: rem(0); 
+        color: $txt2;
+        cursor: pointer;
+        &:hover, &:focus, &:active{
+            outline: none;
+        }
+        font-size: rem(12);
+        padding: rem(7) rem(0);
+    }
+    &-sendLabel{
+       visibility: hidden;
+       margin-bottom: rem(1.8);
+       display: block;
+       
+    }
+
+}

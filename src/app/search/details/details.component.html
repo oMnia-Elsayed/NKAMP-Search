@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-12 pl-sm-0 p-0">
+            <div class="bookDetails-image" *ngIf="isOneImage == true">
+                <img *ngIf="this.bookDetails.items[0].addtionFieldsInListPage.addtionField[2].insertedData == null" class="img-fluid" src="http://localhost:4200/ar/assets/images/Default-Book-Cover.jpg" alt="bookDetailsImage">
+                <img *ngIf="this.bookDetails.items[0].addtionFieldsInListPage.addtionField[2].insertedData != null" class="img-fluid" [src]="this.bookDetails.items[0].addtionFieldsInListPage.addtionField[2].insertedData" alt="bookDetailsImage">
+              </div>
+            <div class="bookDetails-image imageslider" *ngIf="isOneImage == false">
+                    <swiper class="swiper-container" [config]="config" (indexChange)="onIndexChange($event)">
+                            <div *ngFor="let slide of slides" class="swiper-slide">
+                               <div class="bookDetails-image-slide">
+                                    <img class="img-fluid" [(src)]="slide" alt="bookDetailsImage">
+                               </div>
+                            </div>
+                    </swiper>
+            </div>
+
+        </div>
+        <div class="col-sm-8 col-12 oneBook-col">
+            <div class="oneBook">
+                <h2 class="oneBook-title no-padding no-margin">
+                    {{bookDetails.items[0].title}}
+                </h2><!-- end title -->
+                <div class="oneBook-rating-review">
+                    <div class="rating">
+                        <!-- <img class="img-fluid" src="./assets/images/r1.png" alt="bookDetailsImage"> -->
+                        <ngb-rating [(rate)]="ratingDegree" [max]="5"></ngb-rating>
+                    </div> <!-- end rating -->
+                    <div class="review">
+                        <span>{{bookDetails.views_count}}</span>
+                        <span>review</span>
+                    </div> <!-- end review -->
+                </div> <!-- end rating and review -->
+                <p class="oneBook-pref no-padding no-margin">
+                   {{bookDetails.items[0].PhysicalDescription ==''?'No description':bookDetails.items[0].PhysicalDescription}}
+                </p> <!-- end paragraph -->
+                <div class="oneBook-descrption">
+                    <div class="row" *ngFor="let additonalFieldsItem of bookDetails.items[0].addtionFieldsInListPage.addtionField">
+                        <div class="col-3">
+                            <span class="oneBook-descrption-title">
+                                {{ lang == 'ar' || lang=='ar-SA'  ?  additonalFieldsItem.aName :  (lang == 'fr'? additonalFieldsItem.fName :additonalFieldsItem.eName )}}
+                            </span>
+                        </div>
+                        <div class="col-8">
+                            <span>
+                                {{additonalFieldsItem.insertedData}}
+                            </span>
+                        </div>
+                    </div> <!-- end Author -->
+
+                </div> <!-- end  description-->
+                <hr class="horizontal-line" />
+                <ul class="oneBook-features">
+                    <li (click)="addToFavorites()">
+                        <span class="icon features-favIcon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 15 15">
+                                <path
+                                    d="M14.975,6.3c-.219-2.592-1.925-4.473-4.059-4.473A3.991,3.991,0,0,0,7.459,3.969,3.854,3.854,0,0,0,4.084,1.826C1.95,1.826.244,3.707.025,6.3A4.951,4.951,0,0,0,.153,8,7.413,7.413,0,0,0,2.23,11.725l5.226,5.1,5.316-5.1A7.414,7.414,0,0,0,14.848,8,4.962,4.962,0,0,0,14.975,6.3Zm-.689,1.557a6.779,6.779,0,0,1-1.9,3.408L7.459,15.991,2.617,11.266a6.783,6.783,0,0,1-1.9-3.41A4.326,4.326,0,0,1,.594,6.4l0-.031C.786,4.1,2.252,2.447,4.084,2.447A3.4,3.4,0,0,1,7.192,4.778l.266.677.266-.677a3.5,3.5,0,0,1,3.193-2.331c1.832,0,3.3,1.648,3.489,3.949A4.321,4.321,0,0,1,14.286,7.856Z"
+                                    transform="translate(0 -1.826)" />
+                            </svg>
+                        </span>
+                        <span i18n="@@spn_add_to_favorites">
+                          Add to Favorites
+                        </span>
+                    </li>
+                    <li>
+                        <span class="icon features-shareIcon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 18.05 19">
+                                <path id="share"
+                                    d="M14.445,13.5a3.276,3.276,0,0,0-.448.55L8.326,10.676a3.13,3.13,0,0,0,0-2.379L14,4.945a3.293,3.293,0,0,0,2.767,1.5,3.255,3.255,0,0,0,3.282-3.221,3.282,3.282,0,0,0-6.563,0A3.149,3.149,0,0,0,13.7,4.368L8.023,7.725A3.3,3.3,0,0,0,5.279,6.266a3.221,3.221,0,1,0,0,6.441,3.3,3.3,0,0,0,2.744-1.459L13.7,14.631a3.167,3.167,0,0,0,.743,3.427,3.33,3.33,0,0,0,4.641,0,3.178,3.178,0,0,0,0-4.555A3.329,3.329,0,0,0,14.445,13.5ZM16.765.644a2.6,2.6,0,0,1,2.625,2.576,2.626,2.626,0,0,1-5.251,0A2.6,2.6,0,0,1,16.765.644ZM5.279,12.063A2.577,2.577,0,1,1,7.9,9.487,2.6,2.6,0,0,1,5.279,12.063ZM18.621,17.6a2.664,2.664,0,0,1-3.713,0,2.543,2.543,0,0,1,0-3.644,2.664,2.664,0,0,1,3.713,0,2.543,2.543,0,0,1,0,3.644Z"
+                                    transform="translate(-1.997 0)" />
+                            </svg>
+                        </span>
+                      <span i18n="@@spn_share">
+                          share
+                      </span>
+                    </li>
+                    <li>
+                        <span class="icon features-borrowIcon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 18 17.665">
+                                <g data-name="icon - Borrow" transform="translate(0 -1)">
+                                    <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(0 1)" fill="none"  stroke-width="1">
+                                        <ellipse cx="9" cy="8.832" rx="9" ry="8.832" stroke="none" />
+                                        <ellipse cx="9" cy="8.832" rx="8.5" ry="8.332" fill="none" />
+                                    </g>
+                                    <path id="Path_82" data-name="Path 82"
+                                        d="M7.439-3.364H4.875V-.806H4.031V-3.364H1.473v-.851H4.031V-6.773h.844v2.558H7.439Z"
+                                        transform="translate(5.027 13.273)"
+                                        stroke-width="1" />
+                                </g>
+                            </svg>
+                        </span>
+                       <span i18n="@@spn_borrow">
+                          Borrow
+                       </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

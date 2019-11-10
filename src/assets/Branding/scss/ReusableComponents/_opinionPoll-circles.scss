@@ -1,0 +1,464 @@
+$default-color: $pri;
+$color2: #ccc;
+$bg-color: #f5f5f5;
+
+
+
+/****************************************************************
+ *
+ * CSS Percentage Circle
+ * Author: Andre Firchow
+ *
+*****************************************************************/
+
+
+// Compass utilities
+// @import "compass";
+
+
+// VARS
+$circle-width: 0.08em;
+$circle-width-hover: 0.04em;
+
+// colors default
+$default-color: #307bbb !default;
+$color2: #ccc !default;
+$bg-color: #f5f5f5 !default;
+
+$default-color-secondary: $sec;
+$default-color-info: $inf;
+
+
+// colors dark skin
+$default-color-dark: #c6ff00;
+$color2-dark: #777;
+$bg-color-dark: #666;
+
+$default-color-secondary-dark: #5fd400;
+$default-color-info-dark: #e08833;
+
+// mixins
+
+
+@mixin rotate2($degree) {
+  -webkit-transform: rotate($degree);
+  transform: rotate($degree);
+}
+
+@mixin transition-property($property) {
+  -webkit-transition-property: $property;
+  -moz-transition-property: $property;
+  -o-transition-property: $property;
+  transition-property: $property;
+}
+
+@mixin transition-duration($duration) {
+  -webkit-transition-duration: $duration;
+  -moz-transition-duration: $duration;
+  -o-transition-duration: $duration;
+  transition-duration: $duration;
+}
+
+@mixin transition-timing-function($function) {
+  -webkit-transition-timing-function: $function;
+  -moz-transition-timing-function: $function;
+  -o-transition-timing-function: $function;
+  transition-timing-function: $function;
+}
+
+@mixin box-sizing($pram) {
+  -webkit-box-sizing: $pram;
+  -moz-box-sizing: $pram;
+  box-sizing: $pram;
+}
+
+// CIRCLE
+// classes 2 extend
+.rect-auto {
+  clip: rect(auto, auto, auto, auto);
+}
+
+.pie {
+  position: absolute;
+  border: $circle-width solid $default-color;
+  width: 1 - (2 * $circle-width);
+  height: 1 - (2 * $circle-width);
+  clip: rect(0em, 0.5em, 1em, 0em);
+  border-radius: 50%;
+  @include rotate2(0deg);
+}
+
+.pie-fill {
+  @include rotate2(180deg);
+}
+
+
+
+.opinionPoll {
+  &-radioButton,
+  &-circle {
+    display: flex;
+
+    @include bp(xs) {
+      flex-direction: column;
+    }
+
+  }
+
+  &-text {
+    font-size: 16px;
+    margin-#{$left}: auto;
+    order: 2;
+    font-weight: bold;
+    flex: 1;
+    padding-top: 0.9em;
+    line-height: 1em;
+    text-align: $left;
+    @include bp(xs) {
+      text-align: center;
+      margin-#{$left}: 0;
+    }
+
+    @include bp(md) {
+      font-size: 1.1rem;
+    }
+  }
+
+  &-question {
+    margin-bottom: 1.5rem;
+  }
+
+  &-seperator {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-top-color: rgba(0, 0, 0, 0.2);
+  }
+
+  &-count {
+    color: #333333;
+    font-weight: bold;
+    font-size: 16px;
+
+    .number {
+      font-size: 1.5em;
+      margin-#{$left}: .7em;
+      vertical-align: middle;
+    }
+
+  }
+
+  // radio button 
+  &-radioButton {
+    text-align: center;
+    margin-bottom: 15px;
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .c100 {
+      display: block;
+      max-width: none;
+      background-color: $default-color;
+
+      >span {
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+      } 
+      &:after {
+        top: 0.04em;
+        #{$left}: 0.04em;
+        width: 0.92em;
+        height: 0.92em;
+      } 
+    }
+    .opinionPoll-text {
+      cursor: pointer;
+    }
+    .c100:hover,
+    input[type="radio"]:checked+.c100 {
+      >span {
+        color: $bg-color;
+        opacity: 1;
+        visibility: visible;
+        line-height: 1.6em;
+        width: 100%;
+        font-size: 0.6em;
+
+      }
+
+      &:after {
+        top: 50%;
+        #{$left}: 50%;
+        width: 0;
+        height: 0;
+      }
+    }
+  }
+
+  // end radio button 
+}
+
+// main
+.c100 {
+
+  *,
+  *:before,
+  *:after {
+    @include box-sizing(content-box);
+  }
+
+  position: relative;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  // margin: 0 0.1em 0.1em 0;
+  background-color: $color2;
+  margin-#{$right}: .3em;
+  margin-bottom: .2em;
+  font-size: 50px;
+
+
+  @include bp(xs) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @include bp(sm) {
+    font-size: 80px;
+  }
+
+  @include bp(md) {
+    font-size: 100px;
+  }
+
+  @include bp(lg) {
+    font-size: 120px;
+  }
+
+  @include bp(xl) {
+    font-size: 150px;
+  }
+
+  // center circle to its parent
+  &.center {
+    float: none;
+    margin: 0 auto;
+  }
+
+  // bigger size
+  &.default {
+    font-size: rem(120);
+  }
+
+  // bigger size
+  &.big {
+    font-size: rem(240);
+  }
+
+  // smaller size
+  &.small {
+    font-size: rem(80);
+  }
+
+  // centered value inside circle
+  >span {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    #{$left}: 0;
+    top: 0;
+    width: 5em;
+    line-height: 5em;
+    font-size: 0.2em;
+    color: $color2;
+    display: block;
+    text-align: center;
+    white-space: nowrap;
+    @include transition-property(all);
+    @include transition-duration(0.2s);
+    @include transition-timing-function(ease-out);
+  }
+
+  // background inside the circle
+  &:after {
+    position: absolute;
+    top: $circle-width;
+    #{$left}: $circle-width;
+    display: block;
+    content: " ";
+    border-radius: 50%;
+    background-color: $bg-color;
+    width: 1 - (2 * $circle-width);
+    height: 1 - (2 * $circle-width);
+    @include transition-property(all);
+    @include transition-duration(0.2s);
+    @include transition-timing-function(ease-in);
+
+  }
+
+  // the slice (mask)
+  .slice {
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    clip: rect(0em, 1em, 1em, 0.5em);
+  }
+
+  // circle to show the status
+  .bar {
+    @extend .pie;
+  }
+
+
+  // loop to create all needed elements automatically
+  @for $j from 51 through 100 {
+
+    &.p#{$j} .slice {
+      @extend .rect-auto;
+    }
+
+    &.p#{$j} .bar:after {
+      @extend .pie-fill;
+    }
+
+    &.p#{$j} .fill {
+      @extend .pie;
+      @extend .pie-fill;
+    }
+
+  }
+
+  // loop to rotate all 100 circles
+  @for $j from 1 through 100 {
+    &.p#{$j} .bar {
+      @include rotate2((360/100*$j) + deg);
+    }
+  }
+
+
+
+  // hover styles
+  &:hover {
+
+    cursor: default;
+
+    >span {
+      width: 3.33em;
+      line-height: 3.33em;
+      font-size: 0.3em;
+      color: $default-color;
+    }
+
+    &:after {
+      top: $circle-width-hover;
+      #{$left}: $circle-width-hover;
+      width: 1 - (2 * $circle-width-hover);
+      height: 1 - (2 * $circle-width-hover);
+    }
+
+  }
+
+
+  // override colors for the dark skin
+  &.dark {
+
+    background-color: $color2-dark;
+
+    .bar,
+    .fill {
+      border-color: $default-color-dark !important;
+    }
+
+    >span {
+      color: $color2-dark;
+    }
+
+
+    &:after {
+      background-color: $bg-color-dark;
+    }
+
+    &:hover {
+
+      >span {
+        color: $default-color-dark;
+      }
+
+    }
+
+  }
+
+
+  // secondary skin
+  &.secondary {
+    @at-root .opinionPoll-radioButton #{&}{
+      background-color:  $default-color-secondary ;
+      &:hover {
+      >span {
+        color: $bg-color;
+      }
+    }
+    }
+    .bar,
+    .fill {
+      border-color: $default-color-secondary !important;
+    }
+
+    &:hover {
+      >span {
+        color: $default-color-secondary;
+      }
+    }
+
+  }
+
+  &.secondary.dark {
+    
+
+    .bar,
+    .fill {
+      border-color: $default-color-secondary-dark !important;
+    }
+
+    &:hover {
+      >span {
+        color: $default-color-secondary-dark;
+      }
+    }
+
+  }
+
+
+  // info skin
+  &.info {
+
+    .bar,
+    .fill {
+      border-color: $default-color-info !important;
+    }
+
+    &:hover {
+      >span {
+        color: $default-color-info;
+      }
+    }
+
+  }
+
+  &.info.dark {
+
+    .bar,
+    .fill {
+      border-color: $default-color-info-dark !important;
+    }
+
+    &:hover {
+      >span {
+        color: $default-color-info-dark;
+      }
+    }
+
+  }
+}

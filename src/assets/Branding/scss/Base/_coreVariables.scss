@@ -1,0 +1,26 @@
+// =====> main sass partial style
+// DONT  remove OR   edit  
+
+//  custom  refrances  
+@import "../Core/variables"; 
+@import "../Core/colors"; 
+
+@import "../Base/directionVariablesConfig";
+@import "../Core/Options/themeColors";
+
+
+@import "../Core/Options/spacing-options";
+@import "../Core/Options/grid-breakpoint";
+
+
+@import "../Core/Options/fontsConfig";
+
+@import "../Core/Options/tables_buttons";
+@import "../Core/Options/forms";
+
+@import "../Core/Options/modals-breadcrumbs";
+@import "../Core/Options/moreOptions";
+
+@import "default"; // this default referance  
+
+

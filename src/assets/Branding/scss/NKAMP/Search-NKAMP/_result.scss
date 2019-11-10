@@ -1,0 +1,309 @@
+// grid result NKAMP 
+.gResultNK {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    min-width: 0;
+    border: 1px solid rgba(0, 0, 0, .125);
+    margin-bottom: rem(15);
+
+    @include bp(isMiniMobile) {
+        height: 180px;
+    }
+
+    @include bp(xs) {
+        flex-direction: column;
+    }
+
+    &-cover {
+
+        overflow: hidden;
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+        flex: 0 0 130px;
+
+        img {
+            min-height: 100%;
+        }
+
+        @include bp(450px) {
+            flex: 0 0 160px;
+        }
+
+        @include bp(xs) {
+            flex: inherit;
+            width: 100%;
+            height: rem(270);
+        }
+    }
+
+    //  show when hoverd the result
+    &-actions {
+        display: block;
+        background-color: rgba($color: $pri, $alpha: .7);
+        width: 100%;
+        opacity: 0;
+        visibility: hidden;
+        @include coverer();
+        @include trans();
+
+        &>.centerBox {
+            @include centerer();
+        }
+
+    }
+
+    // actions hover 
+    &:hover,
+    &:focus {
+        .gResultNK-actions {
+            @include bp(xs) {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        .gResultNK-body {
+            background-color: $search-gray-e;
+        }
+    }
+
+
+    &-action {
+        display: block;
+        color: $txt2;
+        font-size: rem(14);
+
+        &:not(:last-child) {
+            margin-bottom: rem(15);
+        }
+
+        &:hover,
+        &:focus {
+            color: $txt2;
+        }
+
+        >.icon {
+            margin-#{$right}: rem(15);
+        }
+
+    }
+
+    &-body {
+        height: rem(180);
+        padding: rem(15) rem(20);
+        width: 100%;
+        @include trans($property: background-color);
+    }
+
+    &-type {
+        font-size: 12px;
+        margin-bottom: rem(20);
+        display: flex;
+    }
+
+    &-favIcon {
+        font-size: 16px;
+
+    }
+
+    &-title {
+        color: $pri;
+        font-weight: 600;
+        margin-bottom: rem(10);
+        font-size: 1rem;
+
+        &:hover,
+        &:focus {
+            color: $pri;
+        }
+    }
+
+    &-auther {
+
+        font-weight: 600;
+        margin-bottom: rem(5);
+        font-size: 12px;
+
+        @include bp(xs) {
+            font-size: 13px;
+        }
+
+        @include bp(sm) {
+            font-size: 14px;
+        }
+    }
+
+    &-publisherDate {
+
+        margin-bottom: rem(5);
+        font-size: 12px;
+
+        @include bp(xs) {
+            font-size: 13px;
+        }
+
+        @include bp(sm) {
+            font-size: 14px;
+        }
+    }
+
+    &-rating {
+        display: flex;
+    }
+
+    &-review {
+        font-size: 11px;
+
+        @include bp(xs) {
+            font-size: 12px;
+        }
+    }
+
+}
+
+// ================================================================
+// ======= List Results
+.lResultNK {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    min-width: 0;
+    border: 1px solid rgba(0, 0, 0, .125);
+    margin-bottom: rem(15);
+
+    @include bp(isMiniMobile) {
+        height: 180px;
+    }
+
+    &-cover {
+
+        overflow: hidden;
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+        flex: 0 0 130px;
+
+        @include bp(450px) {
+            flex: 0 0 160px;
+        }
+
+        @include bp(xs) {
+            flex: inherit;
+            flex: 0 0 150px;
+            height: 200px;
+        }
+    }
+
+
+    &-body {
+        height: rem(180);
+        padding: rem(15) rem(20);
+        width: 100%;
+        @include trans($property: background-color);
+    }
+
+    &-actions {
+        display: block;
+        background-color: rgba($color: $pri, $alpha: .7);
+        width: 100%;
+        @include trans();
+
+        &>.centerBox {
+            @include centerer();
+        }
+
+    }
+
+    &-action {
+        display: block;
+        color: $txt2;
+        font-size: rem(14);
+
+        &:not(:last-child) {
+            margin-bottom: rem(15);
+        }
+
+        &:hover,
+        &:focus {
+            color: $txt2;
+        }
+
+        >.icon {
+            margin-#{$right}: rem(15);
+        }
+
+    }
+
+    &-details {}
+
+    &-type {
+        font-size: 12px;
+        margin-bottom: rem(20);
+        display: flex;
+    }
+
+    &-favIcon {
+        font-size: 16px;
+
+    }
+
+    &-title {
+        color: $pri;
+        font-weight: 600;
+        margin-bottom: rem(10);
+        font-size: 1rem;
+
+        &:hover,
+        &:focus {
+            color: $pri;
+        }
+    }
+
+    &-auther {
+
+        font-weight: 600;
+        margin-bottom: rem(5);
+        font-size: 12px;
+
+        @include bp(xs) {
+            font-size: 13px;
+        }
+
+        @include bp(sm) {
+            font-size: 14px;
+        }
+    }
+
+    &-publisherDate {
+
+        margin-bottom: rem(5);
+        font-size: 12px;
+
+        @include bp(xs) {
+            font-size: 13px;
+        }
+
+        @include bp(sm) {
+            font-size: 14px;
+        }
+    }
+
+    &-rating {
+        display: flex;
+    }
+
+    &-review {
+        font-size: 11px;
+
+        @include bp(xs) {
+            font-size: 12px;
+        }
+    }
+
+}

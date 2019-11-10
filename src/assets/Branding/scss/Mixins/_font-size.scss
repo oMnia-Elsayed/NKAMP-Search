@@ -1,0 +1,23 @@
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+@function rem($size) {
+  $remSize: $size / 16;
+  @return #{$remSize}rem;
+}
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+} 
+@function image($fileName) { 
+  @return  url($img-path+'/'+$fileName) ;
+}
+@function icon($fileName) {
+  @return  url($icons-path+'/'+$fileName) ;
+}

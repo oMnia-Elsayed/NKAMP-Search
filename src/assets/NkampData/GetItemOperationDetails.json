@@ -1,0 +1,137 @@
+[
+  {
+    "comments": [
+      {
+        "commentCreateDate": "2019-04-03",
+        "commentData": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit ",
+        "commentApprovedBy": "admin_1",
+        "anonymous": false,
+        "Id": "comm_33333",
+        "userId": "elbaz",
+        "email": "assma@gmail.com",
+        "commentApprovalDate": "2019-04-04",
+        "coverImage": "https://via.placeholder.com/150",
+        "ratingDegree": 5
+      },
+      {
+        "commentCreateDate": "2019-04-03",
+        "commentData": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "commentApprovedBy": "admin_2",
+        "anonymous": false,
+        "Id": "comm_33333",
+        "userId": "assma",
+        "email": "assma@gmail.com",
+        "commentApprovalDate": "2019-04-04",
+        "coverImage": "https://via.placeholder.com/150",
+        "ratingDegree": 3
+      },
+      {
+        "commentCreateDate": "2019-04-03",
+        "commentData": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "commentApprovedBy": "admin_2",
+        "anonymous": false,
+        "Id": "comm_33333",
+        "userId": "Hager",
+        "email": "Hager@gmail.com",
+        "commentApprovalDate": "2019-04-04",
+        "coverImage": "https://via.placeholder.com/150",
+        "ratingDegree": 1
+      }
+    ],
+    "rating_count": {
+      "l1Count": 1,
+      "l2Count": 3,
+      "l3Count": 3,
+      "l4Count": 3,
+      "l5Count": 3
+    },
+    "views_count": 3,
+    "share_count": 8,
+    "materialTypeId": "mat_44aaaaa4",
+    "dataSourceName": "name1agggggggaaaaaaaa111",
+    "dataSourceId": "data333agggggggaaaaa3",
+    "itemIndexId": "gggggggggggg",
+    "primaryItemSourceId": "ggggggggg",
+    "materialTypeName": "mat taype",
+    "id": "WTv9BmoBNpoo7s4yZV_E",
+    "title": "Title1",
+    "description": "Description1",
+    "coverImage": "https://via.placeholder.com/150",
+    "addtionFieldsInDetail": [
+      {
+        "id": "id1",
+        "aName": "المؤلف:",
+        "eName": "Author",
+        "fName": "Author",
+        "fieldOrderPage": 3,
+        "inputHtmlTypeName": "text",
+        "insertedData": "AHmed Khaled"
+      },
+      {
+        "id": "id2",
+        "aName": "AName2",
+        "eName": "EName2",
+        "fName": "FName2",
+        "fieldOrderPage": 2,
+        "inputHtmlTypeName": "image",
+        "insertedData": "https://via.placeholder.com/150"
+      },
+      {
+        "id": "id3",
+        "aName": "AName3",
+        "eName": "EName3",
+        "fName": "FName3",
+        "fieldOrderPage": 1,
+        "inputHtmlTypeName": "link",
+        "insertedData": "www.google.com"
+      },
+      {
+        "id": "id4",
+        "aName": "AName2",
+        "eName": "EName2",
+        "fName": "FName2",
+        "fieldOrderPage": 4,
+        "inputHtmlTypeName": "image",
+        "insertedData": "https://via.placeholder.com/150"
+      },
+      {
+        "id": "id1",
+        "aName": "publish Date:",
+        "eName": "publish Date:",
+        "fName": "publish Date:",
+        "fieldOrderPage": 5,
+        "inputHtmlTypeName": "text",
+        "insertedData": "2019"
+      }
+    ],
+    "addtionFieldsInList": [
+      {
+        "id": "id1",
+        "aName": "AName1",
+        "eName": "EName1",
+        "fName": "FName1",
+        "fieldOrderPage": 1,
+        "inputHtmlTypeName": "text",
+        "insertedData": "InsertedData1"
+      },
+      {
+        "id": "id2",
+        "aName": "AName2",
+        "eName": "EName2",
+        "fName": "FName2",
+        "fieldOrderPage": 2,
+        "inputHtmlTypeName": "text",
+        "insertedData": "InsertedData2"
+      },
+      {
+        "id": "id3",
+        "aName": "AName3",
+        "eName": "EName3",
+        "fName": "FName3",
+        "fieldOrderPage": 3,
+        "inputHtmlTypeName": "text",
+        "insertedData": "InsertedData3"
+      }
+    ]
+  }
+]

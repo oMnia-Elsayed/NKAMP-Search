@@ -1,0 +1,195 @@
+.digitalSearch{
+    &-title{
+        color: $search-txt;
+        font-size: rem(14);
+        margin-top: rem(24);
+        margin-bottom: rem(15);
+    } 
+    &-desc{
+        color: $search-txt3;
+        font-size: rem(12);
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        margin-bottom: rem(15);
+        height: rem(31);
+        @include bp(xs)
+        {  
+          margin-bottom: rem(24);
+          -webkit-line-clamp: 3;
+          height: rem(47);
+        } 
+        @include bp(sm) 
+        {  
+          height: rem(49);
+        } 
+        @include bp(md) 
+        {  
+          height: rem(49);
+        } 
+        @include bp(lg) //  min  1200
+        {  
+          margin-bottom: rem(15);
+          height: rem(60);
+        }
+    }
+    &-fields{
+        background-color: $search-gray-e;
+        position: relative;
+        padding: rem(17) rem(0) rem(56) rem(0);
+        margin-bottom: rem(21);
+        @include bp(xs) // min 576
+        {  
+            margin-bottom: rem(35);
+            padding: rem(50) rem(0) rem(70) rem(0);
+        } 
+        @include bp(sm) // min 768
+        {  
+            margin-bottom: rem(27); 
+            padding: rem(31) rem(0) rem(31) rem(0);
+        } 
+        @include bp(lg) //  min  1200
+        {  
+            margin-bottom: rem(35);
+          
+        }
+        form{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: rem(0) rem(17);
+            @include bp(xs) // min 576
+            {  
+               flex-direction: row;
+               padding: rem(0);
+            } 
+            @include bp(sm)
+            {  
+               width: 87%;              
+            }
+            @include bp(md)
+            {  
+               width: 92%;              
+            }
+            @include bp(lg)
+            {  
+               width: 91%;              
+            }
+        }
+        &-input{
+            background-color: $white;
+            border: 1px solid $search-border;
+            padding: rem(7) rem(10);
+            height: rem(31);
+            &:hover, &:focus, &:active{
+                outline: none;
+            }
+            width: 100%;
+            @include bp(xs) // min 576
+            {  
+                width: 45%;
+            } 
+            @include bp(sm) // min 768
+            {  
+                width: rem(400);
+            } 
+            @include bp(md) //  min  992
+            {  
+                width: rem(530);
+            }
+            @include bp(lg)
+            {  
+                width: rem(560);           
+            }
+        }
+        &-btn{
+            background-color: $search-base-color;
+            padding: rem(7) rem(0);
+            text-align: center;
+            font-size: rem(12);
+            height: rem(30);
+            outline: none; 
+            border: rem(0); 
+            color: $txt2;
+            margin: rem(0);
+            margin-top: rem(10);
+            cursor: pointer;
+            &:hover, &:focus, &:active{
+                outline: none;
+            }
+            width: 100%;
+            @include bp(xs) // min 576
+            {  
+                width: 45%;
+                margin-left: rem(15);
+                margin-top: rem(0);
+            } 
+            @include bp(sm) // min 768
+            {  
+                width: rem(75);
+            } 
+            @include bp(md) //  min 992
+            {  
+                width: rem(130);
+            }
+            @include bp(lg) //  min  1200
+            {  
+                width: rem(150);
+            }
+            
+        }
+        &-favorite{ 
+          position: absolute;
+          right: rem(18);
+          top: auto;
+          bottom: rem(18);
+          @include bp(xs) // min 576
+          {  
+            right: rem(21);
+            top: auto;
+            bottom: rem(27);
+          } 
+          @include bp(sm) // min 768
+          {  
+            right: rem(70);
+            top: rem(35);
+          } 
+          @include bp(md) //  min 992
+          {  
+            right: rem(50);
+          }
+          @include bp(lg) //  min  1200
+          {  
+              right: rem(60);
+          }
+          span:not(.digitalSearch-fields-favoriteNumber){
+              display: inline-block;
+              color:  $search-base-color;
+              font-size: rem(14);
+              margin-left: rem(15);
+          }
+          display: block;
+          @include bp(sm) // min 768
+          {  
+            display: inline-block;
+          } 
+
+        }
+        &-favoriteNumber{
+            background-color:  $search-base-color;
+            display: inline-block;
+            width:rem(14);
+            height:rem(14);
+            border-radius: 50%;
+            color: $txt2;
+            font-size: rem(10);
+            text-align: center;
+            padding-right: rem(2);
+            position: absolute;
+            left: rem(11);
+            top: rem(1);
+
+        }
+    }
+}

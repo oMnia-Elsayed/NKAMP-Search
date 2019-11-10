@@ -1,0 +1,98 @@
+$faq-font-color:#333333;
+
+.faq {
+    font-size: 16px;
+
+    .card[role="tablist"] {
+        border-color: rgba($color: $pri, $alpha: .4);
+        margin-bottom: 1.25em;
+        @include bp(sm) {margin-bottom: 0;}
+    }
+    .btn-group[role="tablist"] .dropdown-menu{
+        border-color: rgba($color: $pri, $alpha: .4);
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: 13px 15px;
+        color: $faq-font-color;
+
+        &.active {
+            background-color: rgba($color: $pri, $alpha: .4);
+            position: relative; 
+            @include bp(sm) { 
+                &:after {
+                    content: '';
+                    display: block;
+                    @include abs ($t: #{calc(50% - 10px)}, $l: 100%);
+                    @include arrow($dir: right, $size: 10px, $color: rgba($color: $pri, $alpha: .4));
+                }
+            }
+        }
+    }
+
+    .dropdown-menu.nav:not(.show){
+        display: none;
+    }
+
+    .tab-content {
+        .card {
+            border-#{$left}: 0;
+
+            &:not(:last-child) {
+                margin-bottom: rem(20);
+            }
+
+            &-header {
+                padding: 15px;
+                font-size: 1.125em;
+                background-color: transparent;
+                border-bottom: 0;
+                cursor: pointer;
+                @include clearfix();
+
+                .faq-icon {
+                    float: $right;
+
+                    .plus {
+                        display: none;
+                    }
+                }
+
+                &.collapsed {
+                    color: $pri;
+
+                    .faq-icon .minus {
+                        display: none;
+                    }
+
+                    .faq-icon .plus {
+                        display: block;
+                    }
+
+                }
+
+            }
+
+        }
+
+        .card-header:not(.collapsed),
+        .card-header+.collapse {
+            border-#{$left}-color: $sec;
+        }
+
+        .card-header,
+        .collapse {
+            border-#{$left}: 5px solid;
+        }
+
+        .card-header+.collapse {
+            border-bottom-#{$left}-radius: 5px;
+        }
+
+        .card-header.collapsed {
+            @include border-left-rad(5px);
+        }
+
+    }
+}
