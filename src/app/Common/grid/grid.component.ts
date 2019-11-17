@@ -97,10 +97,14 @@ export class GridComponent implements OnInit {
   }
 
   showSuccess() { // TODO: read message from configuration/translation file
-    this.$messageService.add({ severity: 'success', summary: 'رسالة نجاح', detail: 'تم تقديم طلب إستعارة بنجاح', life: 3600000 });
+    setTimeout(() => {
+      this.$messageService.add({ severity: 'success', summary: 'رسالة نجاح', detail: 'تم تقديم طلب إستعارة بنجاح', life: 3600000 });
+    }, 2000);
   }
   showError() {
-    this.$messageService.add({ severity: 'error', summary: 'رسالة خطأ', detail: 'لم يتم تقديم طلب إستعارة بشكل صحيح', life: 3600000 });
+    setTimeout(() => {
+      this.$messageService.add({ severity: 'error', summary: 'رسالة خطأ', detail: 'لم يتم تقديم طلب إستعارة بشكل صحيح', life: 3600000 });
+    }, 2000);
   }
 
   borrowBook() {

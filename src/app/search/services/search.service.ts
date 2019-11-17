@@ -64,29 +64,9 @@ export class SearchService {
 
   getResults(searchCriteria): Observable<any> {
     searchCriteria.fromPage = searchCriteria.wantedPage;
+    // console.log(JSON.stringify(searchCriteria));
     return this.http.post<any>(this.Url + 'MakeNewSearch', searchCriteria);
   }
-
-  // getFacetsResult(facetsFilter): Observable<any> {
-  //   facetsFilter = JSON.stringify(facetsFilter);
-  //   const body = {
-  //     searchProfileId: this.searchCriteria.searchProfileId,
-  //     pageSize: this.searchCriteria.pageSize,
-  //     fromPage: this.searchCriteria.wantedPage,
-  //     dataSourcesId: this.searchCriteria.dataSourcesId,
-  //     searchKeyWords: this.searchCriteria.searchKeyWords,
-  //     facetsFilter: [facetsFilter],
-  //     keywWordsOrderBy: [
-  //       {
-  //         keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
-  //         keywWordType: '4',
-  //         keywWordValue: 'value',
-  //         isAcendening: true
-  //       }
-  //     ]
-  //   };
-  //   return this.http.post<any>(this.Url + 'MakeNewSearch', body);
-  // }
 
   getNextPage(): Observable<any> {
     this.nextPageCriteria.searchProfileId = this.userProfile.searchProfile_id;

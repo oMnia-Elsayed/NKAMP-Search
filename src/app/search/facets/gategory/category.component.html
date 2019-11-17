@@ -35,16 +35,16 @@
         <div class="controlRC_indicator"></div>
       </label>
 
-      <ng-container *ngIf="facetOption.values.length > 0" >
-        <ng-container *ngFor="let item of checklist;let idx = index">
+      <!-- <ng-container *ngIf="facetOption.values.length > 0" > -->
+        <ng-container *ngFor="let item of checklist; let idx = index">
           <label class="controlRC" *ngIf="idx < maxShowing || this.showAll">
-            <span class="text" *ngIf="facetOption.values[idx] !== undefined">{{facetOption.values[idx].facetValue}}</span>
-            <span class="count float-right" *ngIf="facetOption.values[idx] !== undefined">{{facetOption.values[idx].totalItems}}</span>
+            <span class="text">{{item.value}}</span>
+            <span class="count float-right">{{item.totalItems}}</span>
             <input type="checkbox" id={{item.id}} [(ngModel)]="item.isSelected" (change)="isAllSelected()" name="{{'checkbox'+idx}}" />
             <div class="controlRC_indicator"></div>
           </label>
         </ng-container>
-      </ng-container>
+      <!-- </ng-container> -->
     </div>
 
     <button *ngIf="  this.facetOption.values.length > maxShowing " type="button" class="btn btn-link p-0 mb-4"

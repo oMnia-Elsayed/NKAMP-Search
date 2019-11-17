@@ -45,8 +45,9 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.facetOption.values.forEach((o, i) => {
-      this.checklist.push({ id: o.facetId, value: o.facetValue, isSelected: false });
+      this.checklist.push({ id: o.facetId, value: o.facetValue, isSelected: false, totalItems: o.totalItems });
     });
     this.facetOption.values.forEach(element => {
       this.totalOfAllItems += element.totalItems;
@@ -139,6 +140,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onSubmit(): void {
+
     let criteria;
     this.$searchService.currentCriteria$.subscribe(data => {
       criteria = data;
@@ -147,12 +149,9 @@ export class CategoryComponent implements OnInit {
     this.checkedList.forEach(element => {
       criteria.facetsFilter.push(element); // push without checking if the el exists !
     });
-    // console.log(criteria);
     this.$searchService.currentCriteria$.next(criteria);
     this.$searchService.getResults(criteria).subscribe((data) => {
       this.$searchService.results$.next(data);
-      // console.log(data);
-      // this.checklist = [];
     });
   }
 }

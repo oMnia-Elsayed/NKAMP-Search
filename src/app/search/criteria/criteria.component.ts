@@ -37,7 +37,7 @@ export class CriteriaComponent implements OnInit {
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService,
               private $eventEmitterService: EventEmitterService, private fb: FormBuilder) {
     this.lang = this.$globalsService.UILanguage;
-    // this.inisalizeCriteriaobject();
+    this.inisalizeCriteriaobject();
     this.DataSources = [];
     this.AllFields = [];
     this.ContainsData = [];
@@ -122,12 +122,12 @@ export class CriteriaComponent implements OnInit {
   }
 
   addSearchButtonClick(): void {
-    if ((this.criteriaForm.get('searchadd') as FormArray).length < this.searchKeyword.length ) {
+    if ((this.criteriaForm.get('searchadd') as FormArray).length < this.searchKeyword.length) {
       (this.criteriaForm.get('searchadd') as FormArray).push(this.addSearchFormGroup());
     }
   }
 
-//  ----------------------------------------------------------------------------------------------------------------------- //
+  //  ----------------------------------------------------------------------------------------------------------------------- //
 
   onSubmit() {
     this.setSearchObject();
@@ -137,37 +137,58 @@ export class CriteriaComponent implements OnInit {
     });
   }
 
-  setSearchObject() {
+  setSearchObject(group: FormGroup = this.criteriaForm): void {
     this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
     this.CriteriaSearch.pageSize = this.pageSize;
     this.CriteriaSearch.wantedPage = 0;
-
-    if (this.criteriaForm.controls.dataSourceFC.value === null ) {
-      this.CriteriaSearch.dataSourcesId =  [this.DataSources[1].id];
-    }
-
-    const { searchTextFC, searchOperationFC, operator } = this.criteriaForm.controls.searchadd.value[0];
-    this.CriteriaSearch.searchKeyWords = [{
-      searchKeyWordId: this.dataSourceId || '' ,
-      materialTypeId: this.materialTypeId || '',
-      keyWordValue: searchTextFC || '',
-      searchOperationId: ((searchOperationFC !== null && searchOperationFC !== undefined) ? searchOperationFC : this.searchOperationId),
-      nextSearchKeyWordWithAnd: operator === 'AND' ? true : false
-    }];
-
     this.CriteriaSearch.facetsFilter = this.facetsFilter || [];
     this.CriteriaSearch.keywWordsOrderBy = this.keywWordsOrderBy || [
       {
-      keywWordId: '',
-      keywWordType: 1,
-      keywWordValue: '',
-      isAcendening: true
-    }
-  ];
+        keywWordId: '',
+        keywWordType: 1,
+        keywWordValue: '',
+        isAcendening: true
+      }
+    ];
+    this.CriteriaSearch.dataSourcesId = [];
+    this.CriteriaSearch.searchKeyWords = [];
+    Object.keys(group.controls).forEach((key: string) => {
+      const abstractControl = group.get(key);
+      if (abstractControl instanceof FormControl) {
+        if (key === 'dataSourceFC') {
+          if (abstractControl.value === null) {
+            this.CriteriaSearch.dataSourcesId = [];
+            this.DataSources.forEach((data) => {
+              this.CriteriaSearch.dataSourcesId.push(data.id);
+            });
+          } else {
+            this.CriteriaSearch.dataSourcesId.push(abstractControl.value);
+          }
+        }
+      }
+      if (abstractControl instanceof FormArray) {
+        abstractControl.controls.forEach((control, controlIdx) => {
+          if (control instanceof FormGroup) {
+            let searchKeyWord = {} as SearchKeyWordDetails;
+            const isLast: boolean = controlIdx === abstractControl.controls.length;
+            const { facetFC, searchTextFC, searchOperationFC, operator } = control.value;
+            searchKeyWord = {
+              searchKeyWordId: (facetFC !== null ? facetFC : 'd112835b-3b56-4295-aa62-7842dee627d0'),
+              materialTypeId: 'f1b94474-82df-4e46-b1df-4cbb61aaee85',
+              keyWordValue: searchTextFC,
+              searchOperationId: ((searchOperationFC !== null && searchOperationFC !== undefined) ?
+                searchOperationFC : 'aad2c592-dc0d-4ed5-a5c7-6f0259c0498b'),
+              nextSearchKeyWordWithAnd: isLast ? null : ((operator === 'AND' ? true : false)),
+            };
+            this.CriteriaSearch.searchKeyWords.push(searchKeyWord);
+          }
+        });
+      }
+    });
     this.$searchService.searchCriteria = this.CriteriaSearch;
   }
 
-  //  ---------------------------------------------------------------------------------------------------------------------------- //
+  // ---------------------------------------------------------------------------------------------------------------------------- //
 
   changeDataSourceItem(event) {
     this.dataSourceId = event.target.value.slice(3, event.target.value.length);
@@ -198,42 +219,7 @@ export class CriteriaComponent implements OnInit {
     currentCreteriaForms.controls.length = 1;
   }
 
-  // setSearchObject(group: FormGroup = this.criteriaForm): void {
-  //   this.CriteriaSearch.dataSourcesId = [];
-  //   this.CriteriaSearch.searchKeyWords = [];
-  //   Object.keys(group.controls).forEach((key: string) => {
-  //     const abstractControl = group.get(key);
-  //     if (abstractControl instanceof FormControl) {
-  //       if (key === 'dataSourceFC') {
-  //         if (abstractControl.value === null) {
-  //           this.CriteriaSearch.dataSourcesId = [];
-  //           this.DataSources.forEach((data) => {
-  //             this.CriteriaSearch.dataSourcesId.push(data.id);
-  //           });
-  //         } else {
-  //           this.CriteriaSearch.dataSourcesId.push(abstractControl.value);
-  //         }
-  //       }
-  //     }
-  //     if (abstractControl instanceof FormArray) {
-  //       abstractControl.controls.forEach((control, controlIdx) => {
-  //         if (control instanceof FormGroup) {
-  //           let searchKeyWord = {} as SearchKeyWordDetails;
-  //           const isLast: boolean = controlIdx === abstractControl.controls.length;
-  //           const { facetFC, searchTextFC, searchOperationFC, operator } = control.value;
-  //           searchKeyWord = {
-  //             searchKeyWordId: (facetFC !== null ? facetFC : ''),
-  //             materialTypeId: 'f1b94474-82df-4e46-b1df-4cbb61aaee85',
-  //             keyWordValue: searchTextFC,
-  //             searchOperationId: ((searchOperationFC !== null && searchOperationFC !== undefined) ? searchOperationFC : ''),
-  //             nextSearchKeyWordWithAnd: isLast ? null : ((operator === 'AND' ? true : false)),
-  //           };
-  //           this.CriteriaSearch.searchKeyWords.push(searchKeyWord);
-  //         }
-  //       });
-  //     }
-  //   });
-  // }
+
 
   /*getContainsData(indexControll) {
     const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;

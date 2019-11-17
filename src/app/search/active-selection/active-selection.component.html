@@ -4,7 +4,7 @@
   </h6>
   <ul class="activeSelection-items">
     <li class="activeSelection-item" *ngFor="let item of facetsObj">
-      <button type="button" class="btn btn-icon">
+      <button type="button" class="btn btn-icon"  (click)="deleteFilter(item.facetValue)">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 14.141 14.141">
           <g id="Delete" transform="translate(-66 -284)">
             <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(66 284)" fill="none" stroke-width="1">
@@ -19,7 +19,7 @@
         </svg>
       </button>
       <span class="text">
-        {{item.facetId}} = "{{item.facetValue}}"
+        "{{item.facetValue}}"
       </span>
     </li>
   </ul>

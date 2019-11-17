@@ -26,4 +26,9 @@ export class ActiveSelectionComponent implements OnInit {
       }
     });
   }
+
+  deleteFilter(facetVal) {
+    this.facetsObj.splice(this.facetsObj.indexOf(this.facetsObj.find(el => el.facetValue === facetVal)) , 1 );
+    this.$searchService.currentCriteria$.subscribe(res => res);
+  }
 }
