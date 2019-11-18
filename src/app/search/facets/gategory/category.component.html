@@ -54,7 +54,7 @@
     </button>
 
     <button type="button" class="btn btn-primary w-100" [ngClass]="{'cursor-disable': this.checkedList.length < 1 }"
-      disabled="{{this.checkedList.length < 1 ? 'disabled' : ''}}" (click)="onSubmit()" i18n="@@btn_apply">
+      disabled="{{!applyFlag ? 'disabled' : ''}}" (click)="onSubmit()" i18n="@@btn_apply">
       Apply
     </button>
   </ng-container>

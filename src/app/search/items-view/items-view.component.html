@@ -114,10 +114,8 @@
     *ngFor="let singleMaterialType of materialTypes; let i = index">
     <div class="row">
       <ng-container *ngFor="let item of itemsArr">
-        <!-- <app-grid *ngIf="item.materialTypeId == singleMaterialType.Id" class="col-12 col-sm-6 col-md-4 col-lg-4"
-          [book-data]="item"></app-grid> -->
-          <app-grid class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1 && item.materialTypeId == singleMaterialType.Id" [book-data]="item"></app-grid>
-          <app-list class="col-12 col-sm-12 col-md-12 col-lg-12" *ngIf="displayMode === 2 && item.materialTypeId == singleMaterialType.Id" [book-data]="item"></app-list>
+        <app-grid class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1 && item.materialTypeId == singleMaterialType.Id" [book-data]="item"></app-grid>
+        <app-list class="col-12 col-sm-12 col-md-12 col-lg-12" *ngIf="displayMode === 2 && item.materialTypeId == singleMaterialType.Id" [book-data]="item"></app-list>
       </ng-container>
     </div>
   </p-tabPanel>

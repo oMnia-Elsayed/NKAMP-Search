@@ -35,6 +35,9 @@ export class SearchService {
     keywWordsOrderBy: []
   };
 
+  isFacetFilterDeleted = false;
+  deletedFacetFilter: FacetFilter;
+  clearFacetFilters = false;
   private childClickedEvent = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService,
@@ -174,6 +177,18 @@ export class SearchService {
 
   favEventListner() {
     return this.childClickedEvent.asObservable();
+  }
+
+  checkItemInArray( obj, array) {
+    let exists = false;
+    array.forEach(el => {
+      if (JSON.stringify(el) === JSON.stringify(obj)) {
+        exists = true;
+      } else {
+        exists = false;
+      }
+    });
+    return exists;
   }
 
 }

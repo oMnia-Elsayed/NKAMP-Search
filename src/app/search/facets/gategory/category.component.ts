@@ -18,6 +18,7 @@ export class CategoryComponent implements OnInit {
   maxShowing = 6;
   totalOfAllItems = 0;
 
+  applyFlag = false;
   isCollapsed = false;
   isVituailizationActive = false;
   config = {
@@ -75,6 +76,19 @@ export class CategoryComponent implements OnInit {
           ]
         }]
     };
+
+    this.$searchService.currentCriteria$.subscribe(data => {
+      if (this.$searchService.isFacetFilterDeleted) {
+        this.checklist.forEach( el => {
+            if (el.value === this.$searchService.deletedFacetFilter.facetValue) {
+              el.isSelected = false;
+            }
+        });
+      }
+      if (this.$searchService.clearFacetFilters) {
+        this.checklist.forEach(el => el.isSelected = false);
+      }
+    });
   }
 
   // createItemsFormDynamic() {
@@ -103,6 +117,7 @@ export class CategoryComponent implements OnInit {
   }
 
   isAllSelected() {
+    this.applyFlag = true;
     this.masterSelected = this.checklist.every((item: any) => {
       return item.isSelected === true;
     });
@@ -124,7 +139,6 @@ export class CategoryComponent implements OnInit {
         this.checkedList.push(selectedItem);
       }
     }
-    // this.checkedList = JSON.stringify(this.checkedList);
   }
 
   onItemChange(item: any) {
@@ -139,19 +153,24 @@ export class CategoryComponent implements OnInit {
     this.checkedList = [selectedItem];
   }
 
-  onSubmit(): void {
 
+  onSubmit(): void {
     let criteria;
     this.$searchService.currentCriteria$.subscribe(data => {
       criteria = data;
     });
     if (criteria.facetsFilter === undefined) { criteria.facetsFilter = []; }
+
     this.checkedList.forEach(element => {
-      criteria.facetsFilter.push(element); // push without checking if the el exists !
+      const el = element;
+      if (!this.$searchService.checkItemInArray(el, criteria.facetsFilter)) {
+        criteria.facetsFilter.push(el);
+      }
     });
     this.$searchService.currentCriteria$.next(criteria);
     this.$searchService.getResults(criteria).subscribe((data) => {
       this.$searchService.results$.next(data);
     });
+    this.applyFlag = false;
   }
 }

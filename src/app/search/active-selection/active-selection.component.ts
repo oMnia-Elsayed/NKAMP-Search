@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SearchService } from '../services/search.service';
+import { SearchCriteria } from '../services/SearchCriteria.Model';
 
 @Component({
   selector: 'app-active-selection',
@@ -9,6 +10,7 @@ import { SearchService } from '../services/search.service';
 export class ActiveSelectionComponent implements OnInit {
   isShowing: boolean;
   facetsObj: any;
+
   constructor(private $searchService: SearchService) {
     this.isShowing = false;
   }
@@ -19,16 +21,42 @@ export class ActiveSelectionComponent implements OnInit {
         if (data.facetsFilter !== undefined) {
           this.facetsObj = [];
           this.isShowing = true;
-          data.facetsFilter.forEach(item => {
-            this.facetsObj.push(item);
-          });
+          this.facetsObj = data.facetsFilter;
         }
       }
     });
   }
 
   deleteFilter(facetVal) {
-    this.facetsObj.splice(this.facetsObj.indexOf(this.facetsObj.find(el => el.facetValue === facetVal)) , 1 );
-    this.$searchService.currentCriteria$.subscribe(res => res);
+    this.$searchService.isFacetFilterDeleted = true;
+
+    const newFacets = [];
+    this.facetsObj.forEach(el => {
+      if (el.facetValue !== facetVal) {
+        newFacets.push(el);
+      } else {
+        this.$searchService.deletedFacetFilter = el;
+      }
+    });
+    this.facetsObj = newFacets;
+    this.resetCriteria();
+  }
+
+  clearFacetFilter() {
+    this.$searchService.clearFacetFilters = true;
+    this.facetsObj = [];
+    this.resetCriteria();
+  }
+
+  resetCriteria() {
+    let criteria = {} as SearchCriteria;
+    this.$searchService.currentCriteria$.subscribe(data => {
+      criteria = data;
+    });
+    criteria.facetsFilter = this.facetsObj;
+    this.$searchService.currentCriteria$.next(criteria);
+    this.$searchService.getResults(criteria).subscribe((data) => {
+      this.$searchService.results$.next(data);
+    });
   }
 }

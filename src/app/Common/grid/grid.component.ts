@@ -35,15 +35,15 @@ export class GridComponent implements OnInit {
       wantedPage: 0
     };
 
-    this.favoriteService.getFavoriteList(body).subscribe(response => {
-      if (response !== null) {
-        // this.favItems = response;
-        // this.favItems = response;
-        // response.forEach( item => {
-        // });
-      } else {
-      }
-    });
+    // this.favoriteService.getFavoriteList(body).subscribe(response => {
+    //   if (response !== null) {
+    //     // this.favItems = response;
+    //     // this.favItems = response;
+    //     // response.forEach( item => {
+    //     // });
+    //   } else {
+    //   }
+    // });
   }
 
   public onTap() {
