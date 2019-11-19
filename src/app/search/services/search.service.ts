@@ -6,6 +6,7 @@ import { AppConfigService } from 'src/app/NKAMP-Search-shared/services/app-confi
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 import { FacetFilter, SearchCriteria } from './SearchCriteria.Model';
+import { FavoriteService } from 'src/app/favorite/services/favorite.service';
 
 @Injectable({
   providedIn: 'root'
@@ -35,13 +36,20 @@ export class SearchService {
     keywWordsOrderBy: []
   };
 
+  body = {
+    userId: 'albaqer_naseej',
+    pageSize: 12,
+    wantedPage: 0
+  };
+
+  favListArray: [];
   isFacetFilterDeleted = false;
   deletedFacetFilter: FacetFilter;
   clearFacetFilters = false;
   private childClickedEvent = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService,
-              private errorLogging: ErrorLoggingService) {
+              private errorLogging: ErrorLoggingService, private favoriteService: FavoriteService) {
     this.Url = appConfig.configdata.apiUrl;
   }
 
@@ -66,8 +74,8 @@ export class SearchService {
   }
 
   getResults(searchCriteria): Observable<any> {
+    this.favoriteService.getFavoriteList(this.body).subscribe( res => this.favListArray = res.hits.hits);
     searchCriteria.fromPage = searchCriteria.wantedPage;
-    // console.log(JSON.stringify(searchCriteria));
     return this.http.post<any>(this.Url + 'MakeNewSearch', searchCriteria);
   }
 

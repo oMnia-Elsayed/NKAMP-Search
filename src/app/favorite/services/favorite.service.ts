@@ -6,6 +6,7 @@ import { AppConfigService } from 'src/app/NKAMP-Search-shared/services/app-confi
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 import { BookDetailsService } from '../../search/services/book-details.service';
+import { LogConsole } from 'src/app/Naseej-error-handling/dataModel/LogPublisher';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,9 @@ export class FavoriteService {
   }
 
   getFavoriteList(requestBody): Observable<any> {
-    requestBody.wantedPage = this.nextPageCriteria.wantedPage;
+
+    // requestBody.wantedPage = this.nextPageCriteria.wantedPage;
+    // return this.http.post<any>(this.Url + 'GetFavoritesList', requestBody, this.bookDetailsService.httpOptions);
     return this.http.post<any>(this.Url + 'GetFavoritesList', requestBody, this.bookDetailsService.httpOptions).pipe(
       map((data: any) => {
         return data;

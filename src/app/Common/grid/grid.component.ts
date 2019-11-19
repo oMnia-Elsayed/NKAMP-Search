@@ -4,6 +4,7 @@ import { FavoriteService } from 'src/app/favorite/services/favorite.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { SearchService } from 'src/app/search/services/search.service';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { BookActionService } from '../services/book-action.service';
 
 @Component({
   selector: 'app-grid',
@@ -17,33 +18,25 @@ export class GridComponent implements OnInit {
   // @Output() exampleOutPut = new EventEmitter<any>();
   currentRate = 8;
   additionalField: any;
-  isFav = false;
   favoriteBadge: any;
-  favItems;
-
+  favItems: [];
+  isFav: boolean;
   constructor(private $bookDetailFav: BookDetailsService, private $messageService: MessageService,
-              private favoriteService: FavoriteService, private router: Router, private $searchService: SearchService) {
+              private favoriteService: FavoriteService, private router: Router, private $searchService: SearchService,
+              private $bookAction: BookActionService) {
   }
 
   ngOnInit() {
+    this.isFav = this.$bookAction.isFav;
+    this.favItems = this.$searchService.favListArray;
     this.additionalField = this.bookData.addtionFieldsInListPage.addtionField
       .filter(x => x.id === '789f356c-dcec-459c-aac4-6196f430d890')[0].insertedData;
+  }
 
-    const body = {
-      userId: 'albaqer_naseej',
-      // pageSize: 5,
-      wantedPage: 0
-    };
-
-    // this.favoriteService.getFavoriteList(body).subscribe(response => {
-    //   if (response !== null) {
-    //     // this.favItems = response;
-    //     // this.favItems = response;
-    //     // response.forEach( item => {
-    //     // });
-    //   } else {
-    //   }
-    // });
+  addToMyFav(data) {
+    this.isFav = !this.isFav;
+    this.$bookAction.isFav = this.isFav;
+    this.$bookAction.mainAddToMyFav(data);
   }
 
   public onTap() {
@@ -68,33 +61,7 @@ export class GridComponent implements OnInit {
     this.router.navigate(['book'], navigationExtras);
   }
 
-  addToMyFav(data) {
-    const body = {
-      userId: 'albaqer_naseej',
-      anonymous: true,
-      email: 'albaqer@naseej.com',
-      itemListPageInformation: {
-        itemSourceId: data.itemSourceId,
-        dataSourceName: data.dataSourceName,
-        dataSourceId: data.dataSourceId,
-        materialTypeId: data.materialTypeId,
-        materialTypeName: data.materialTypeName,
-        title: data.Title,
-        description: data.PhysicalDescription,
-        coverImage: data.coverImage,
-        addtionslFields: data.addtionFieldsInListPage.addtionField
-      }
-    };
 
-    this.$bookDetailFav.addFavorite(body).subscribe(response => {
-      if (response !== null) {
-        this.isFav = true;
-        // this.isFav = !this.isFav;
-      }
-    });
-    // this.exampleOutPut.emit(data);
-    this.$searchService.emitfavBadgeEvent(data);
-  }
 
   showSuccess() { // TODO: read message from configuration/translation file
     setTimeout(() => {

@@ -42,7 +42,6 @@ export class SearchComponent implements OnInit {
     }
 
   ngOnInit() {
-
     this.$searchService.favEventListner().subscribe(info => {
       this.getFavoriteBadge();
     });
@@ -73,6 +72,16 @@ export class SearchComponent implements OnInit {
     // save search
     this.getquerySavesearch();
     this.getFavoriteBadge();
+  }
+
+// --------------------------------------------------------------------------------------------------  //
+  getFavoriteBadge() {
+    this.favoriteService.getFavoriteList(this.$searchService.body).subscribe( response  => {
+      if (response !== null) {
+        this.favoriteBadge = response.hits.total;
+      } else {
+      }
+    });
   }
 
   getquerySavesearch() {
@@ -148,18 +157,5 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  getFavoriteBadge() {
-    const body = {
-      userId: 'albaqer_naseej',
-      // pageSize: 5,
-      wantedPage: 0
-    };
 
-    this.favoriteService.getFavoriteList(body).subscribe( response  => {
-      if (response !== null) {
-        // this.favoriteBadge = response.hits.total;
-      } else {
-      }
-    });
-  }
 }

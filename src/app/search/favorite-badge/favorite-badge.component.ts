@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoriteService } from 'src/app/favorite/services/favorite.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-favorite-badge',
@@ -9,19 +10,14 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
 })
 export class FavoriteBadgeComponent implements OnInit {
 
-  favoriteBadge: 55;
+  favoriteBadge;
   lang: string;
-  constructor(private favoriteService: FavoriteService, private $globalsService: GlobalsService) {
+  constructor(private favoriteService: FavoriteService, private $globalsService: GlobalsService, private $searchService: SearchService ) {
     this.lang = this.$globalsService.UILanguage;
   }
 
   ngOnInit() {
-    const body = {
-      userId: 'albaqer_naseej',
-      // pageSize: 5,
-      wantedPage: 0
-    };
-    this.favoriteService.getFavoriteList(body).subscribe(response => {
+    this.favoriteService.getFavoriteList(this.$searchService.body).subscribe(response => {
       if (response !== null) {
         this.favoriteBadge = response.hits.total;
       } else {

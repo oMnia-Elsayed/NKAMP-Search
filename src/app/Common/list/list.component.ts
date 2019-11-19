@@ -4,6 +4,7 @@ import { BookDetailsService } from 'src/app/search/services/book-details.service
 import '../../../assets/js/sosialsharing.js';
 import { SearchService } from 'src/app/search/services/search.service';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { BookActionService } from '../services/book-action.service.js';
 
 declare function sharePostToFaceBook(pageUrl: string, postTitle: string, postDescription: string, postImage: string): any;
 
@@ -19,7 +20,6 @@ export class ListComponent implements OnInit {
   @ViewChild('bookTitle') bookTitle: ElementRef;
   additionalField1: any;
   additionalField2: any;
-  isFav = false;
   albumTitle: any;
   selectEl;
   BookModel = {
@@ -27,14 +27,14 @@ export class ListComponent implements OnInit {
     disc: '',
     imageURL: ''
   };
-
+  isFav: boolean;
 
   constructor(private $bookDetailFav: BookDetailsService, private $messageService: MessageService,
-              private $searchService: SearchService) { }
+              private $searchService: SearchService, private $bookAction: BookActionService) { }
 
   ngOnInit() {
-    // console.log(this.bookData);
 
+    this.isFav = this.$bookAction.isFav;
     this.additionalField1 = this.bookData.addtionFieldsInListPage.addtionField
       .filter(x => x.id === '789f356c-dcec-459c-aac4-6196f430d890')[0].insertedData;
     this.additionalField2 = this.bookData.addtionFieldsInListPage.addtionField
@@ -42,29 +42,9 @@ export class ListComponent implements OnInit {
   }
 
   addToMyFav(data) {
-    const body = {
-      userId: 'albaqer_naseej',
-      anonymous: true,
-      email: 'albaqer@naseej.com',
-      itemListPageInformation: {
-        itemSourceId: data.itemSourceId,
-        dataSourceName: data.dataSourceName,
-        dataSourceId: data.dataSourceId,
-        materialTypeId: data.materialTypeId,
-        materialTypeName: data.materialTypeName,
-        title: data.Title,
-        description: data.PhysicalDescription,
-        coverImage: data.coverImage,
-        addtionslFields: data.addtionFieldsInListPage.addtionField
-      }
-    };
-
-    this.$bookDetailFav.addFavorite(body).subscribe(response => {
-      if (response !== null) {
-        this.isFav = true;
-      }
-    });
+    this.$bookAction.mainAddToMyFav(data);
   }
+
   sharefacebook() {
     sharePostToFaceBook(location.href, this.BookModel.title, this.BookModel.disc, this.BookModel.imageURL);
   }

@@ -8,11 +8,10 @@
         <circle data-name="Ellipse 2" cx="8" cy="8" r="8" transform="translate(1088.221 322)" fill="#f7941e" />
         <text data-name="26" transform="translate(1096.221 333)" fill="#fff" font-size="10"
           font-family="SegoeUI, Segoe UI">
-         <tspan  *ngIf="lang == 'ar-SA' && favoriteBadge <= 9" x="2.591" y="0">{{favoriteBadge}}</tspan>
-         <tspan  *ngIf="lang == 'ar-SA' && favoriteBadge > 9" x="5.391" y="0">{{favoriteBadge}}</tspan>
+          <tspan *ngIf="lang == 'ar-SA' && favoriteBadge <= 9" x="2.591" y="0">{{favoriteBadge}}</tspan>
+          <tspan *ngIf="lang == 'ar-SA' && favoriteBadge > 9" x="5.391" y="0">{{favoriteBadge}}</tspan>
           <tspan *ngIf="lang != 'ar-SA' && favoriteBadge <= 9" x="-2.591" y="0">{{favoriteBadge}}</tspan>
-          <tspan *ngIf="lang != 'ar-SA' && favoriteBadge > 9" x="-5.391" y="0">{{favoriteBadge}}</tspan>
-
+          <tspan *ngIf="lang != 'ar-SA' && favoriteBadge > 9" x="7" y="0">{{favoriteBadge}}</tspan>
         </text>
       </g>
     </svg>

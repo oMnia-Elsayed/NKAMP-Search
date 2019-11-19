@@ -23,26 +23,29 @@ export class FavoriteSearchComponent implements OnInit {
   };
   startDate: number;
   endDate: number;
-  allData: any;
+  allData: [];
   page = 1;
   show = false;
   index = 0;
   isAdded = false;
   body = {
     userId: 'albaqer_naseej',
-    // pageSize: 5,
+    pageSize: 12,
     wantedPage: 1
   };
-  constructor(private favoriteService: FavoriteService) { }
+
+  publisher;
+  constructor(private favoriteService: FavoriteService) {}
+
   ngOnInit() {
     this.getFavorite();
-  }
+}
 
   getFavorite() {
     this.favoriteService.getFavoriteList(this.body).subscribe(response => {
       if (response !== null) {
         this.collectionSizeT = Math.round(response.hits.total);
-        this.allData = response;
+        this.allData = response.hits.hits;
       } else {
       }
     });
@@ -84,8 +87,9 @@ export class FavoriteSearchComponent implements OnInit {
   }
 
   getPublisher(item) {
-    // tslint:disable-next-line:max-line-length
-    return item._source.itemListPageInformation.addtionslFields.filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00')[0].insertedData;
+    console.log(item);
+    const addtionslFields = [item._source.itemListPageInformation.addtionslFields]
+    return addtionslFields.filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00')[0].insertedData;
   }
 
   paginate(pageNumber): void {

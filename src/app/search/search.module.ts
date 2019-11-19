@@ -75,11 +75,10 @@ const SearchRoutes = [
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
     },
-    EventEmitterService
+    EventEmitterService,
   ],
   imports: [
     RouterModule.forChild(SearchRoutes),
-
     ProgressSpinnerModule,
     BlockUIModule,
     ToastModule,
@@ -92,7 +91,8 @@ const SearchRoutes = [
     FormsModule,
     RatingModule,
     NgbModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    CommonModule,
   ]
 })
 export class SearchModule { }

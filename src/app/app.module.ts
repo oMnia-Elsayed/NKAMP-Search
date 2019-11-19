@@ -11,13 +11,10 @@ import { NKAMPSearchSharedModule } from './NKAMP-Search-shared/NKAMP-Search-shar
 // import { ShareButtonsModule } from '@ngx-share/buttons'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     OrderByPipe,
-
-
   ],
   imports: [
     BrowserModule,
