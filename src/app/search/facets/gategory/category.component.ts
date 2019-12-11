@@ -155,6 +155,7 @@ export class CategoryComponent implements OnInit {
 
 
   onSubmit(): void {
+    this.$searchService.materialFilterActive = false; // disable material type tabs filter
     let criteria;
     this.$searchService.currentCriteria$.subscribe(data => {
       criteria = data;
@@ -169,7 +170,11 @@ export class CategoryComponent implements OnInit {
     });
     this.$searchService.currentCriteria$.next(criteria);
     this.$searchService.getResults(criteria).subscribe((data) => {
-      this.$searchService.results$.next(data);
+      if (data === 'nodatafound') {
+        console.log('Something bad happened; please try again later.');
+      } else {
+        this.$searchService.results$.next(data);
+      }
     });
     this.applyFlag = false;
   }

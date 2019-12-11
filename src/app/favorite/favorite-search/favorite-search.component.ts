@@ -10,8 +10,8 @@ import { NgForm } from '@angular/forms';
 })
 export class FavoriteSearchComponent implements OnInit {
   @ViewChild('formEle') formElement: NgForm;
-  collectionSizeT = Math.round(11);
-  // pageSize = 5;
+  collectionSizeT;
+  pageSize = 12;
   pageIndex = 1;
   getFavoriteListRequestBody = {
     userId: 'Jv0b2WkB7-mpx-Tip1YF',
@@ -34,14 +34,11 @@ export class FavoriteSearchComponent implements OnInit {
     wantedPage: 1
   };
 
-  publisher;
   constructor(private favoriteService: FavoriteService) {}
 
-  ngOnInit() {
-    this.getFavorite();
-}
+  ngOnInit() { this.getFavorites(); }
 
-  getFavorite() {
+  getFavorites() {
     this.favoriteService.getFavoriteList(this.body).subscribe(response => {
       if (response !== null) {
         this.collectionSizeT = Math.round(response.hits.total);
@@ -50,6 +47,39 @@ export class FavoriteSearchComponent implements OnInit {
       }
     });
   }
+
+  getPublisher(item) {
+    const addtionslFields = [item._source.itemListPageInformation.addtionslFields];
+    return addtionslFields.filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00' ? x : '' ); // why this condition ?
+    // return addtionslFields.filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00' )[0].insertedData;
+  }
+
+  removeFavItem(id) {
+    const body = {
+      _id: id
+    };
+    this.favoriteService.removeFavoriteItem(body).subscribe(response => {
+      if (response !== null) {
+        this.getFavorites();
+      } else {
+      }
+    });
+  }
+
+  paginate(pageNumber): void {
+    this.favoriteService.nextPageCriteria.wantedPage = pageNumber;
+    this.body.wantedPage = pageNumber;
+    this.getNextPageResults();
+  }
+
+  getNextPageResults(): void {
+    this.favoriteService.getFavoriteList(this.body).subscribe(data => {
+      this.favoriteService.FavoriteList.next(data);
+      this.allData = data.hits.hits;
+    });
+  }
+
+  sendFavorite() { }
 
   // getFavoriteList() {
   //   if (this.formElement.value.searchName || this.formElement.value.dateFrom || this.formElement.value.dateTo) {
@@ -68,40 +98,4 @@ export class FavoriteSearchComponent implements OnInit {
   //   } else {
   //   }
   // }
-
-  onChangePageSize(event) {
-  }
-
-  sendFavorite() { }
-  removeFav(id, index, dataitem) {
-    const body = {
-      _id: id
-    };
-
-    this.favoriteService.removeFavoriteItem(body).subscribe(response => {
-      if (response !== null) {
-        this.getFavorite();
-      } else {
-      }
-    });
-  }
-
-  getPublisher(item) {
-    console.log(item);
-    const addtionslFields = [item._source.itemListPageInformation.addtionslFields]
-    return addtionslFields.filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00')[0].insertedData;
-  }
-
-  paginate(pageNumber): void {
-    this.favoriteService.nextPageCriteria.wantedPage = pageNumber;
-    this.body.wantedPage = pageNumber;
-    this.pageIndex = pageNumber;
-    this.getNextPageResults();
-  }
-
-  getNextPageResults(): void {
-    this.favoriteService.getFavoriteList(this.body).subscribe(Data => {
-      this.favoriteService.FavoriteList.next(Data);
-    });
-  }
 }

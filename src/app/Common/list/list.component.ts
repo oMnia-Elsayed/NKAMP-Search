@@ -28,21 +28,34 @@ export class ListComponent implements OnInit {
     imageURL: ''
   };
   isFav: boolean;
+  favItems: [];
+  bookId;
 
   constructor(private $bookDetailFav: BookDetailsService, private $messageService: MessageService,
               private $searchService: SearchService, private $bookAction: BookActionService) { }
 
   ngOnInit() {
+    this.isFav = false;
+    this.favItems = this.$searchService.favListArray;
 
-    this.isFav = this.$bookAction.isFav;
     this.additionalField1 = this.bookData.addtionFieldsInListPage.addtionField
       .filter(x => x.id === '789f356c-dcec-459c-aac4-6196f430d890')[0].insertedData;
     this.additionalField2 = this.bookData.addtionFieldsInListPage.addtionField
       .filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00')[0].insertedData;
+
+    for (const elFav of this.favItems) {
+      // tslint:disable-next-line: no-string-literal
+      if (this.bookData.Title === elFav['_source']['itemListPageInformation']['title']) {
+        this.isFav = true;
+        // tslint:disable-next-line: no-string-literal
+        this.bookId = elFav['_id'];
+      }
+    }
   }
 
   addToMyFav(data) {
-    this.$bookAction.mainAddToMyFav(data);
+    this.$bookAction.mainAddRemoveMyFav(data, this.bookId , this.isFav);
+    // this.isFav =
   }
 
   sharefacebook() {
@@ -56,7 +69,6 @@ export class ListComponent implements OnInit {
     this.albumTitle = this.bookTitle.nativeElement.innerHTML;
     this.selectEl = 'https://twitter.com/intent/tweet?url=' + location.href + '&amp;text=' + this.albumTitle;
   }
-
 
   showSuccess() {
     this.$messageService.add({ severity: 'success', summary: 'رسالة نجاح', detail: 'تم تقديم طلب إستعارة بنجاح', life: 3600000 });

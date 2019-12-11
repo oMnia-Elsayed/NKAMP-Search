@@ -14,29 +14,72 @@ import { BookActionService } from '../services/book-action.service';
 export class GridComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
   @Input('book-data') bookData;
-
-  // @Output() exampleOutPut = new EventEmitter<any>();
   currentRate = 8;
   additionalField: any;
   favoriteBadge: any;
   favItems: [];
   isFav: boolean;
-  constructor(private $bookDetailFav: BookDetailsService, private $messageService: MessageService,
-              private favoriteService: FavoriteService, private router: Router, private $searchService: SearchService,
-              private $bookAction: BookActionService) {
+  bookId;
+  constructor(private $messageService: MessageService, private router: Router, private $searchService: SearchService,
+              public $bookAction: BookActionService, private $favService: FavoriteService) {
   }
 
   ngOnInit() {
-    this.isFav = this.$bookAction.isFav;
+    this.isFav = false;
     this.favItems = this.$searchService.favListArray;
     this.additionalField = this.bookData.addtionFieldsInListPage.addtionField
       .filter(x => x.id === '789f356c-dcec-459c-aac4-6196f430d890')[0].insertedData;
+
+    for (const elFav of this.favItems) {
+      // tslint:disable-next-line: no-string-literal
+      if (this.bookData.Title === elFav['_source']['itemListPageInformation']['title']) {
+        this.isFav = true;
+        // tslint:disable-next-line: no-string-literal
+        this.bookId = elFav['_id'];
+      }
+    }
   }
 
   addToMyFav(data) {
-    this.isFav = !this.isFav;
-    this.$bookAction.isFav = this.isFav;
-    this.$bookAction.mainAddToMyFav(data);
+    this.mainAddRemoveMyFav(data);
+  }
+
+  mainAddRemoveMyFav(data) {
+    const body = {
+      userId: 'albaqer_naseej',
+      anonymous: true,
+      email: 'albaqer@naseej.com',
+      itemListPageInformation: {
+        itemSourceId: data.itemSourceId,
+        dataSourceName: data.dataSourceName,
+        dataSourceId: data.dataSourceId,
+        materialTypeId: data.materialTypeId,
+        materialTypeName: data.materialTypeName,
+        title: data.Title,
+        description: data.PhysicalDescription,
+        coverImage: data.coverImage,
+        addtionslFields: data.addtionFieldsInListPage.addtionField
+      }
+    };
+
+    if (!this.isFav) {
+      this.$favService.addFavorite(body).subscribe(response => {
+        if (response !== null) {
+          // this.$searchService.emitfavBadgeEvent(data);
+          this.isFav = true;
+        }
+
+      });
+    } else {
+      const bdy = {
+        _id: this.bookId
+      };
+
+      this.$favService.removeFavoriteItem(bdy).subscribe(response => {
+        this.$searchService.emitfavBadgeEvent(data);
+        this.isFav = false;
+      });
+    }
   }
 
   public onTap() {

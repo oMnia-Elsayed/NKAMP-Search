@@ -8,11 +8,10 @@ import { SearchCriteria } from '../services/SearchCriteria.Model';
   styleUrls: ['./active-selection.component.scss']
 })
 export class ActiveSelectionComponent implements OnInit {
-  isShowing: boolean;
   facetsObj: any;
 
   constructor(private $searchService: SearchService) {
-    this.isShowing = false;
+
   }
 
   ngOnInit() {
@@ -20,7 +19,6 @@ export class ActiveSelectionComponent implements OnInit {
       if (data !== null) {
         if (data.facetsFilter !== undefined) {
           this.facetsObj = [];
-          this.isShowing = true;
           this.facetsObj = data.facetsFilter;
         }
       }
@@ -56,7 +54,11 @@ export class ActiveSelectionComponent implements OnInit {
     criteria.facetsFilter = this.facetsObj;
     this.$searchService.currentCriteria$.next(criteria);
     this.$searchService.getResults(criteria).subscribe((data) => {
-      this.$searchService.results$.next(data);
+      if (data === 'nodatafound') {
+        console.log('Something bad happened; please try again later.');
+      } else {
+        this.$searchService.results$.next(data);
+      }
     });
   }
 }

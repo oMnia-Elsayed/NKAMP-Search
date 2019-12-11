@@ -18,6 +18,7 @@ export class CriteriaComponent implements OnInit {
   DataSources: Criteria[];
   dataSourceId = '10f05e71-c6d2-4de3-a0df-e910bbb3942b';
   materialTypeId = '7cb61ddc-9927-4b5e-b6b1-0855de3bb75f';
+  generalMaterialTypeId = 'f1b94474-82df-4e46-b1df-4cbb61aaee85'; // General Material Type ID used as default search value
   searchOperationId = 'e58fb0bc-744c-4136-a4ce-a9a3736914fe';
   myOperations: Criteria[];
   AllFields: Criteria[];
@@ -33,7 +34,9 @@ export class CriteriaComponent implements OnInit {
   keywords = [];
   kw = '';
   isShown = true;
-
+  searchLoading = false;  // For criteria search loader
+  showSearchOperationFC = true;
+  kwItem;
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService,
               private $eventEmitterService: EventEmitterService, private fb: FormBuilder) {
     this.lang = this.$globalsService.UILanguage;
@@ -90,11 +93,23 @@ export class CriteriaComponent implements OnInit {
         this.AllFields = data.FacetFields;
         this.searchKeyword = data.SearchKeywords;
         // fill third dropdown because second dropdown is by default "All Fields"
-        const kwItem = this.searchKeyword.filter(x => x.id === '7cb61ddc-9927-4b5e-b6b1-0855de3bb75f');
+        this.kwItem = this.searchKeyword.filter(x => x.id === '7cb61ddc-9927-4b5e-b6b1-0855de3bb75f');
+
         // tslint:disable-next-line: no-string-literal
-        this.myOperations = kwItem[0]['AllowedSearchOperations']['AllowedSearchOperation'];
+        this.myOperations = this.kwItem[0]['AllowedSearchOperations']['AllowedSearchOperation'];
       }
     });
+  }
+
+  handleThirdDropdown() {
+    if (this.kwItem[0].id === '7cb61ddc-9927-4b5e-b6b1-0855de3bb75') {
+      for (const el of this.myOperations) {
+        if (el.id != null) {
+          this.showSearchOperationFC = !this.showSearchOperationFC;
+          this.getAllDataCriteria();
+        }
+      }
+    }
   }
 
   getSavedSearch(savedCriteriaObj) {
@@ -130,10 +145,17 @@ export class CriteriaComponent implements OnInit {
   //  ----------------------------------------------------------------------------------------------------------------------- //
 
   onSubmit() {
+    this.searchLoading = true;
     this.setSearchObject();
+    this.$searchService.materialFilterActive = false; // disable material type tabs filter
     this.$searchService.currentCriteria$.next(this.CriteriaSearch);
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
-      this.$searchService.results$.next(data);
+      this.searchLoading = false;
+      if (data === 'nodatafound') {
+        console.log('Something bad happened; please try again later.');
+      } else {
+        this.$searchService.results$.next(data);
+      }
     });
   }
 
@@ -174,7 +196,7 @@ export class CriteriaComponent implements OnInit {
             const { facetFC, searchTextFC, searchOperationFC, operator } = control.value;
             searchKeyWord = {
               searchKeyWordId: (facetFC !== null ? facetFC : 'd112835b-3b56-4295-aa62-7842dee627d0'),
-              materialTypeId: 'f1b94474-82df-4e46-b1df-4cbb61aaee85',
+              materialTypeId: this.generalMaterialTypeId,
               keyWordValue: searchTextFC,
               searchOperationId: ((searchOperationFC !== null && searchOperationFC !== undefined) ?
                 searchOperationFC : 'aad2c592-dc0d-4ed5-a5c7-6f0259c0498b'),
@@ -196,9 +218,11 @@ export class CriteriaComponent implements OnInit {
 
   changeFacetFC(event, searchKeyword) {
     const kwId = event.target.selectedOptions[0].id;
-    const kwItem = searchKeyword.filter(x => x.id === kwId);
-    this.myOperations = kwItem[0].AllowedSearchOperations.AllowedSearchOperation;
+    this.kwItem = searchKeyword.filter(x => x.id === kwId);
+    this.myOperations = this.kwItem[0].AllowedSearchOperations.AllowedSearchOperation;
     this.materialTypeId = kwId;
+
+    this.handleThirdDropdown();
   }
 
   changeOperationId(event) {

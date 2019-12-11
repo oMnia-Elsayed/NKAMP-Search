@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SearchService } from 'src/app/search/services/search.service';
-import { BookDetailsService } from 'src/app/search/services/book-details.service';
+import { FavoriteService } from 'src/app/favorite/services/favorite.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +8,9 @@ import { BookDetailsService } from 'src/app/search/services/book-details.service
 export class BookActionService {
 
   isFav = false;
+  constructor(private $favService: FavoriteService, private $searchService: SearchService ) { }
 
-  constructor(private $bookDetailFav: BookDetailsService, private $searchService: SearchService ) { }
-
-  mainAddToMyFav(data) {
+  mainAddRemoveMyFav(data, bookId, isFav) {
     const body = {
       userId: 'albaqer_naseej',
       anonymous: true,
@@ -29,12 +28,22 @@ export class BookActionService {
       }
     };
 
-    if (this.isFav) {
-      this.$bookDetailFav.addFavorite(body).subscribe(response => {
+    if (!isFav) {
+      this.$favService.addFavorite(body).subscribe(response => {
         if (response !== null) {
-          this.isFav = false;
           this.$searchService.emitfavBadgeEvent(data);
+          this.isFav = true;
         }
+
+      });
+    } else {
+      const bdy = {
+        _id: bookId
+      };
+
+      this.$favService.removeFavoriteItem(bdy).subscribe(response => {
+        this.$searchService.emitfavBadgeEvent(data);
+        this.isFav = false;
       });
     }
   }

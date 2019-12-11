@@ -65,6 +65,9 @@
     </div> -->
   <!-- </div> -->
   <div class="row">
+    <a [routerLink]="['']" class="gResultNK-title"  i18n="@@a_Back_results">Back to results</a>
+  </div>
+  <div class="row">
     <div class="col-12">
       <!-- <ng-template #contentDelete let-c="close('a')" let-d="dismiss">
         <div class="modal-header">
@@ -130,7 +133,7 @@
                       </div>
                     </td>
                     <td>
-                      <div class="Favorite-table-delete" (click)="removeFav(dataItem._id,  dataItem)">
+                      <div class="Favorite-table-delete" (click)="removeFavItem(dataItem._id)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="9.928" height="12.764"
                           viewBox="0 0 9.928 12.764">
                           <path id="ic_delete_24px"
@@ -144,17 +147,12 @@
               </table>
             </div>
 
-            <!-- <div class="Favorite-pagination">
+            <div class="Favorite-pagination">
               <ngb-pagination class="d-flex justify-content-center searchNk-paginate" (pageChange)="paginate($event)"
-                [collectionSize]="collectionSizeT" [pageSize]="pageSize" [(page)]="pageIndex" [maxSize]="2"
+                [collectionSize]="collectionSizeT" [pageSize]="pageSize" [(page)]="pageIndex" [maxSize]="4"
                 [rotate]="true" [boundaryLinks]="true">
               </ngb-pagination>
             </div>
-            <div class="paginationContainer">
-              <ngb-pagination class="d-flex justify-content-center searchNk-paginate" (pageChange)="paginate($event)"
-                [collectionSize]="9" [pageSize]="5" [page]="1" [maxSize]="4" [rotate]="true" [boundaryLinks]="true">
-              </ngb-pagination>
-            </div> -->
           </div>
           <div class="col-12">
             <div class="Favorite-sendToEmail">

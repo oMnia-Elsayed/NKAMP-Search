@@ -79,6 +79,8 @@ export class SearchComponent implements OnInit {
     this.favoriteService.getFavoriteList(this.$searchService.body).subscribe( response  => {
       if (response !== null) {
         this.favoriteBadge = response.hits.total;
+        this.$searchService.body.pageSize = this.favoriteBadge;
+        this.$searchService.getResults(this.$searchService.body);
       } else {
       }
     });

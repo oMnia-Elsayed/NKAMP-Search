@@ -6,10 +6,13 @@
   <div class="lResultNK-body">
     <!-- <h6 class="lResultNK-type"> {{bookData.materialTypeId}} </h6> -->
     <h6 class="lResultNK-type"> {{bookData.dataSourceName}} </h6>
-    <a *ngIf="bookData.Title.length >= 90" [routerLink]="[ '/' ]" class="lResultNK-title"> {{ (bookData.Title | slice:0:20)+'..'}} </a>
+    <a *ngIf="bookData.Title.length >= 90" [routerLink]="[ '/' ]" class="lResultNK-title">
+      {{ (bookData.Title | slice:0:20)+'..'}} </a>
     <a *ngIf="bookData.Title.length < 90" [routerLink]="[ '/' ]" class="lResultNK-title"> {{ bookData.Title }} </a>
-    <h5 *ngIf="bookData.Author !== null && bookData.Author.length < 100" class="lResultNK-auther">{{bookData.Author}}</h5>
-    <h5 *ngIf="bookData.Author !== null && bookData.Author.length >= 100" class="lResultNK-auther">{{ (bookData.Author | slice:0:60)+'..'}}</h5>
+    <h5 *ngIf="bookData.Author !== null && bookData.Author.length < 100" class="lResultNK-auther">{{bookData.Author}}
+    </h5>
+    <h5 *ngIf="bookData.Author !== null && bookData.Author.length >= 100" class="lResultNK-auther">
+      {{ (bookData.Author | slice:0:60)+'..'}}</h5>
     <div class="lResultNK-date" *ngIf="additionalField1 !== 0">{{additionalField2}}</div>
     <div class="lResultNK-date" *ngIf="additionalField2 !== 0">{{additionalField1}}</div>
 

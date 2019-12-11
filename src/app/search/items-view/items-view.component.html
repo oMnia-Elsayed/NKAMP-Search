@@ -100,7 +100,46 @@
   </div>
 </div>
 <!--  fillter -->
-<p-tabView class="search-tabs">
+
+<!------------- New tabs structure ---------------->
+<div class="ui-tabview ui-widget ui-widget-content ui-corner-all ui-tabview-top">
+  <div class="search-tabs">
+    <div class="ui-tabview ui-widget ui-widget-content ui-corner-all ui-tabview-top">
+
+      <ul class="ui-tabview-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all ng-star-inserted">
+        <li class="ui-state-default ui-corner-top ng-star-inserted" [ngClass]="{'ui-state-active' : (currentMaterialTypeId == 'f1b94474-82df-4e46-b1df-4cbb61aaee85')}">
+          <a href="javascript:void(0);" (click)="makeSearchByMaterial($event, 'f1b94474-82df-4e46-b1df-4cbb61aaee85')" id="f1b94474-82df-4e46-b1df-4cbb61aaee85">
+            <span class="ui-tabview-title ng-star-inserted">{{generalTXT}}</span>
+          </a>
+        </li>
+        <li *ngFor="let singleMaterialType of materialTypesFilters" class="ui-state-default ui-corner-top ng-star-inserted" [ngClass]="{'ui-state-active' : (currentMaterialTypeId == singleMaterialType.id)}">
+          <a href="javascript:void(0);" (click)="makeSearchByMaterial($event, singleMaterialType.id)" id="{{singleMaterialType.id}}">
+            <span class="ui-tabview-title ng-star-inserted">{{singleMaterialType.name}} (
+              {{singleMaterialType.totalItems}} )</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="ui-tabview-panels">
+        <div id="search-tab-all" class="ui-tabview-panel ui-widget-content ng-star-inserted">
+          <div class="row">
+            <ng-container *ngFor="let item of itemsArr">
+              <app-grid class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1" [book-data]="item">
+              </app-grid>
+              <app-list class="col-12 col-sm-12 col-md-12 col-lg-12" *ngIf="displayMode === 2" [book-data]="item">
+              </app-list>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!------------- End New tabs structure ---------------->
+
+<!-- <p-tabView class="search-tabs">
   <p-tabPanel [header]="generalTXT" [selected]="true">
     <div class="row">
       <ng-container *ngFor="let item of itemsArr">
@@ -110,16 +149,17 @@
     </div>
   </p-tabPanel>
 
-  <p-tabPanel [header]="singleMaterialType.name + ' ( ' + singleMaterialType.totalItems +' ) ' "
-    *ngFor="let singleMaterialType of materialTypes; let i = index">
+  <p-tabPanel *ngFor="let singleMaterialType of materialTypes;" [header]="singleMaterialType.name + ' ( ' + singleMaterialType.totalItems +' ) ' ">
     <div class="row">
       <ng-container *ngFor="let item of itemsArr">
-        <app-grid class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1 && item.materialTypeId == singleMaterialType.Id" [book-data]="item"></app-grid>
-        <app-list class="col-12 col-sm-12 col-md-12 col-lg-12" *ngIf="displayMode === 2 && item.materialTypeId == singleMaterialType.Id" [book-data]="item"></app-list>
+        <!- - <app-grid *ngIf="item.materialTypeId == singleMaterialType.Id" class="col-12 col-sm-6 col-md-4 col-lg-4"
+          [book-data]="item"></app-grid> - ->
+          <app-grid class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1" [book-data]="item"></app-grid>
+          <app-list class="col-12 col-sm-12 col-md-12 col-lg-12" *ngIf="displayMode === 2" [book-data]="item"></app-list>
       </ng-container>
     </div>
   </p-tabPanel>
-</p-tabView>
+</p-tabView> -->
 
 <div class="paginationContainer">
   <ngb-pagination class="d-flex justify-content-center searchNk-paginate" (pageChange)="paginate($event)"
@@ -127,3 +167,11 @@
     [boundaryLinks]="true">
   </ngb-pagination>
 </div>
+
+<div class="search-loading-overlay" *ngIf="searchLoading">
+  <div class="container">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" class="d-block my-5 py-5 text-center">
+    </p-progressSpinner>
+  </div>
+</div>
+

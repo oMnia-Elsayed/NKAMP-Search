@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, BehaviorSubject, Subject } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of, BehaviorSubject, Subject, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { AppConfigService } from 'src/app/NKAMP-Search-shared/services/app-config.service';
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
@@ -48,6 +48,8 @@ export class SearchService {
   clearFacetFilters = false;
   private childClickedEvent = new BehaviorSubject<string>('');
 
+  public materialFilterActive = false; // To check material type tabs filter click
+
   constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService,
               private errorLogging: ErrorLoggingService, private favoriteService: FavoriteService) {
     this.Url = appConfig.configdata.apiUrl;
@@ -76,7 +78,28 @@ export class SearchService {
   getResults(searchCriteria): Observable<any> {
     this.favoriteService.getFavoriteList(this.body).subscribe( res => this.favListArray = res.hits.hits);
     searchCriteria.fromPage = searchCriteria.wantedPage;
-    return this.http.post<any>(this.Url + 'MakeNewSearch', searchCriteria);
+    // console.log(JSON.stringify(searchCriteria));
+
+    return this.http.post<any>(this.Url + 'MakeNewSearch', searchCriteria)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  private handleError(error: HttpErrorResponse) {
+    return ['nodatafound'];
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    alert('Something bad happened; please try again later.');
+    return throwError('Something bad happened; please try again later.');
   }
 
   getNextPage(): Observable<any> {

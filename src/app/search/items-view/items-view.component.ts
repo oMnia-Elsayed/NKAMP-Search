@@ -4,6 +4,7 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
 import { ContentChild } from '@angular/core';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { SearchCriteria } from '../services/SearchCriteria.Model';
+import { $ } from 'protractor';
 @Component({
   selector: 'app-items-view',
   templateUrl: './items-view.component.html',
@@ -32,7 +33,10 @@ export class ItemsViewComponent implements OnInit {
   collectionSizeT: any;
   searchKeywords: Array<any>;
   materialTypes: Array<any>;
+  materialTypesFilters: Array<any>;
   materialTypesConfiguration: Array<any>;
+  currentMaterialTypeId: string;
+  public searchLoading = false; // For search loader
 
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService) {
     this.lang = this.$globalsService.UILanguage;
@@ -46,6 +50,8 @@ export class ItemsViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentMaterialTypeId = this.$searchService.searchCriteria.searchKeyWords[0].materialTypeId; // update Current Material ID
+
     this.$searchService.searchConfiguration$.subscribe(data => {
       if (data !== null) {
         this.searchKeywords = data.SearchKeywords;
@@ -54,6 +60,7 @@ export class ItemsViewComponent implements OnInit {
     });
 
     this.$searchService.results$.subscribe(data => {
+      this.searchLoading = false;
       this.itemsArr = [];
       this.materialTypes = [];
       if (data !== null) {
@@ -64,34 +71,45 @@ export class ItemsViewComponent implements OnInit {
 
         this.collectionSizeT = Math.round(data.totalNumberOfItems);
 
-        const materialTypesResults = data.materialTypesSearcQueryStatistic.MaterialType;
-        if (Array.isArray(materialTypesResults)) {
-          materialTypesResults.forEach(value => {
-            const myVal = this.materialTypesConfiguration.find(materialType => {
-              if (value.name === materialType.NameAr) {
-                const newEl = {name: value.name, totalItems: value.totalItems};
-                if (! this.$searchService.checkItemInArray( newEl, this.materialTypes)) {
-                  this.materialTypes.push(newEl);
-                }
+        let materialTypesResults = data.materialTypesSearcQueryStatistic.MaterialType;
+        if (!Array.isArray(materialTypesResults)) {
+          materialTypesResults = [materialTypesResults];
+        }
+        materialTypesResults.forEach(value => {
+          this.materialTypesConfiguration.forEach(materialType => {
+            if (value.id === materialType.NameAr) {
+              const newEl = { id: materialType.Id, name: value.id, totalItems: value.totalItems };
+              if (!this.$searchService.checkItemInArray(newEl, this.materialTypes)) {
+                this.materialTypes.push(newEl);
               }
-              return materialType;
-            });
+            }
           });
-          // console.log(data);
-          // console.log(this.materialTypesConfiguration);
-          // console.log(this.materialTypes);
-          // console.log(this.itemsArr);
-
-        } else {
-          this.materialTypes = [materialTypesResults];
+        });
+        if (!this.$searchService.materialFilterActive) {
+          this.materialTypesFilters = this.materialTypes;
         }
       }
     });
   }
 
-
+  makeSearchByMaterial(event, materialId): void {
+    this.searchLoading = true;
+    this.$searchService.materialFilterActive = true; // active material type tabs filter
+    /***********/
+    this.$searchService.searchCriteria.searchKeyWords[0].materialTypeId = this.currentMaterialTypeId = materialId;
+    this.CriteriaSearch = this.$searchService.searchCriteria;
+    this.$searchService.getResults(this.CriteriaSearch).subscribe(data => {
+      this.searchLoading = false;
+      if (data === 'nodatafound') {
+        console.log('Something bad happened; please try again later.');
+      } else {
+        this.$searchService.results$.next(data);
+      }
+    });
+  }
 
   paginate(pageNumber): void {
+    this.searchLoading = true;
     // this.$searchService.nextPageCriteria.wantedPage = pageNumber - 1;
     this.$searchService.searchCriteria.wantedPage = pageNumber - 1;
     this.CriteriaSearch = this.$searchService.searchCriteria;
@@ -100,7 +118,12 @@ export class ItemsViewComponent implements OnInit {
 
   getNextPageResults(): void {
     this.$searchService.getResults(this.CriteriaSearch).subscribe(data => {
-      this.$searchService.results$.next(data);
+      this.searchLoading = false;
+      if (data === 'nodatafound') {
+        console.log('Something bad happened; please try again later.');
+      } else {
+        this.$searchService.results$.next(data);
+      }
     });
   }
 
@@ -111,6 +134,7 @@ export class ItemsViewComponent implements OnInit {
   }
 
   onChangePageSize(event): void {
+    this.searchLoading = true;
     this.pageSize = Number(event.target.value);
     // this.$searchService.nextPageCriteria.pageSize = pageSize.target.value;
     this.$searchService.searchCriteria.pageSize = this.pageSize ;
