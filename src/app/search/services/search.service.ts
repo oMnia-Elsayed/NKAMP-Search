@@ -7,6 +7,9 @@ import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/erro
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 import { FacetFilter, SearchCriteria } from './SearchCriteria.Model';
 import { FavoriteService } from 'src/app/favorite/services/favorite.service';
+// import { $ } from 'protractor';
+import * as $ from 'jquery';
+
 
 @Injectable({
   providedIn: 'root'
@@ -78,14 +81,18 @@ export class SearchService {
   getResults(searchCriteria): Observable<any> {
     this.favoriteService.getFavoriteList(this.body).subscribe( res => this.favListArray = res.hits.hits);
     searchCriteria.fromPage = searchCriteria.wantedPage;
-    // console.log(JSON.stringify(searchCriteria));
-
-    return this.http.post<any>(this.Url + 'MakeNewSearch', searchCriteria)
-      .pipe(
-        catchError(this.handleError)
-      );
+    if (searchCriteria.searchProfileId) {
+      $('.search-loading-overlay').css('display', 'flex');
+    }
+    return this.http.post<any>(this.Url + 'MakeNewSearch', searchCriteria).pipe(
+      map((data: any) => {
+        $('.search-loading-overlay').hide();
+        return data;
+      }), catchError(this.handleError));
   }
+
   private handleError(error: HttpErrorResponse) {
+    $('.search-loading-overlay').hide();
     return ['nodatafound'];
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

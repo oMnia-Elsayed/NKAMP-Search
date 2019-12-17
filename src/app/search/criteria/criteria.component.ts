@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { Criteria, AllCriteriaSearch, SearchKeyword } from '../services/criteriaModel';
 import { SearchCriteria, SearchKeyWordDetails, FacetFilter, KeywWordOrder } from '../services/SearchCriteria.Model';
@@ -99,17 +100,6 @@ export class CriteriaComponent implements OnInit {
         this.myOperations = this.kwItem[0]['AllowedSearchOperations']['AllowedSearchOperation'];
       }
     });
-  }
-
-  handleThirdDropdown() {
-    if (this.kwItem[0].id === '7cb61ddc-9927-4b5e-b6b1-0855de3bb75') {
-      for (const el of this.myOperations) {
-        if (el.id != null) {
-          this.showSearchOperationFC = !this.showSearchOperationFC;
-          this.getAllDataCriteria();
-        }
-      }
-    }
   }
 
   getSavedSearch(savedCriteriaObj) {
@@ -222,7 +212,15 @@ export class CriteriaComponent implements OnInit {
     this.myOperations = this.kwItem[0].AllowedSearchOperations.AllowedSearchOperation;
     this.materialTypeId = kwId;
 
-    this.handleThirdDropdown();
+    if (this.kwItem[0].id === '7cb61ddc-9927-4b5e-b6b1-0855de3bb75') {
+      for (const el of this.myOperations) {
+        if (el.id != null) {
+          this.showSearchOperationFC = false;
+        }
+      }
+    } else {
+      this.showSearchOperationFC = false;
+    }
   }
 
   changeOperationId(event) {

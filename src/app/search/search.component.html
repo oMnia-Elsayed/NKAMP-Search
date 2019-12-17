@@ -68,11 +68,11 @@
 
         <div class="searchNK-savedSearchInput" [ngClass]="{'searchNK-saveSearchClicked': !clicked}"
           style="border:0px red solid">
+          <span (click)="ToggleClass()"> &#10005; </span>
           <form (ngSubmit)="getSaveSearchInput()" #formEle="ngForm">
             <input type="text" class="form-control" name="savedSearchInput" ngModel>
             <button type="submit" class="btn btn-primary searchNK-searchBtn" i18n="@@lblSave">Save</button>
           </form>
-          <span (click)="ToggleClass()"> x </span>
         </div>
         <div class="border-item"></div>
 

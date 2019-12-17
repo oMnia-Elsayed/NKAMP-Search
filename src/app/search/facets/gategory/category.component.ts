@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 import { SearchService } from '../../services/search.service';
 
@@ -28,7 +28,7 @@ export class CategoryComponent implements OnInit {
   };
   chartData = {
     labels: [],
-    data: []
+    data: [],
   };
   data: any;
   // variables for radio button
@@ -46,43 +46,45 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.facetOption.values.forEach((o, i) => {
       this.checklist.push({ id: o.facetId, value: o.facetValue, isSelected: false, totalItems: o.totalItems });
     });
+
     this.facetOption.values.forEach(element => {
       this.totalOfAllItems += element.totalItems;
       this.chartData.labels.push(element.facetValue);
       this.chartData.data.push(element.totalItems);
     });
+
     this.config.isAllowMultiSelection = !this.facetOption.isAllowMultipeSelection;
     this.config.isPiChart = this.facetOption.isShowPiChart;
     this.config.isVituailization = this.facetOption.isShowVituailization;
 
+    // generate random colors for charts
+    const colorsArray = ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56'];
+    const colors = [];
+    this.chartData.labels.forEach(element => {
+      colors.push(colorsArray[Math.floor(Math.random() * colorsArray.length)]);
+    });
+
+    // fill charts data
     this.data = {
       labels: [...this.chartData.labels],
       datasets: [
         {
+          label: '',
           data: [...this.chartData.data],
-          backgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56'
-          ],
-          hoverBackgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56'
-          ]
+          backgroundColor: [...colors],
+          hoverBackgroundColor: [...colors]
         }]
     };
 
     this.$searchService.currentCriteria$.subscribe(data => {
       if (this.$searchService.isFacetFilterDeleted) {
-        this.checklist.forEach( el => {
-            if (el.value === this.$searchService.deletedFacetFilter.facetValue) {
-              el.isSelected = false;
-            }
+        this.checklist.forEach(el => {
+          if (el.value === this.$searchService.deletedFacetFilter.facetValue) {
+            el.isSelected = false;
+          }
         });
       }
       if (this.$searchService.clearFacetFilters) {
@@ -90,24 +92,6 @@ export class CategoryComponent implements OnInit {
       }
     });
   }
-
-  // createItemsFormDynamic() {
-  //   this.categoryForm = this.$formBuilder.group({
-  //     selectAll: [null],
-  //     facetFC: new FormArray([])
-  //   });
-
-  //   this.addFacets();
-  // }
-
-  // private addFacets() {
-  //   this.facetOption.values.map((obj, i) => {
-  //     this.checklist.push({ id: obj.id, value: obj.facetValue, isSelected: false });
-  //     const control = new FormControl(); // if first item set to true, else false
-  //     (this.categoryForm.controls.facetFC as FormArray).push(control);
-  //   });
-  //   this.getCheckedItemList();
-  // }
 
   checkUncheckAll() {
     for (const item of this.checklist) {
@@ -177,5 +161,20 @@ export class CategoryComponent implements OnInit {
       }
     });
     this.applyFlag = false;
+  }
+
+  onLabelSubmit(item) {
+    this.onItemChange(item);
+    this.onSubmit();
+  }
+
+  selectData(e: any) {
+    const item = this.checklist[e.element._index];
+    const selectedItem = {
+      id: item.id,
+      value: item.value,
+    };
+
+    this.onLabelSubmit(selectedItem);
   }
 }

@@ -34,7 +34,7 @@
           <div class="form-group col-md-3  col-lg-3" [ngClass]="{ 'col-12 col-sm-12': formIndex == 0
               ,'col-4 col-sm-4':  formIndex > 0  }">
             <select formControlName="searchOperationFC" class="form-control  w-100" (change)="changeOperationId($event)">
-              <option *ngIf="showSearchOperationFC" [ngValue]="null" selected="selected" i18n="@@lblsearch_Containes">Containes</option>
+              <option *ngIf="showSearchOperationFC || true" [ngValue]="null" selected="selected" i18n="@@lblsearch_Containes">Containes</option>
               <ng-container *ngIf="!showSearchOperationFC">
                 <option *ngFor="let contain of myOperations" [ngValue]="contain.id">
                   {{lang == 'ar'||lang=='ar-SA'  ?  contain.aName :  (lang == 'fr'? contain.fName :contain.eName )}}
@@ -84,10 +84,10 @@
       <button type="button" *ngIf="!isAdvanced" class="btn btn-link searchNK-changeStateBtn"
         (click)="isAdvanced=!isAdvanced" i18n="@@lblsearch_advancedSearch">AdvancedSearch</button>
     </div>
-    <div class="form-group" *ngIf="searchLoading">
+    <!-- <div class="form-group" *ngIf="searchLoading">
       <p-progressSpinner [style]="{width: '40px', height: '40px'}" style="margin: 0 5px">
       </p-progressSpinner>
-    </div>
+    </div> -->
     <div class="form-group col-12 col-sm-2">
       <button type="submit" [disabled]="criteriaForm.invalid" [ngClass]="{'cursor-disable': criteriaForm.invalid }" class="btn btn-primary searchNK-searchBtn" i18n="@@lblsearch">Search</button>
     </div>

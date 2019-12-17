@@ -1,10 +1,11 @@
 
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { BookDetailsService } from 'src/app/search/services/book-details.service';
-import '../../../assets/js/sosialsharing.js';
+// import '../../../assets/js/sosialsharing.js';
 import { SearchService } from 'src/app/search/services/search.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { BookActionService } from '../services/book-action.service.js';
+import { FavoriteService } from 'src/app/favorite/services/favorite.service';
 
 declare function sharePostToFaceBook(pageUrl: string, postTitle: string, postDescription: string, postImage: string): any;
 
@@ -32,7 +33,8 @@ export class ListComponent implements OnInit {
   bookId;
 
   constructor(private $bookDetailFav: BookDetailsService, private $messageService: MessageService,
-              private $searchService: SearchService, private $bookAction: BookActionService) { }
+              private $searchService: SearchService, private $bookAction: BookActionService,
+              private $favService: FavoriteService) { }
 
   ngOnInit() {
     this.isFav = false;
@@ -54,8 +56,43 @@ export class ListComponent implements OnInit {
   }
 
   addToMyFav(data) {
-    this.$bookAction.mainAddRemoveMyFav(data, this.bookId , this.isFav);
-    // this.isFav =
+    this.mainAddRemoveMyFav(data);
+  }
+
+  mainAddRemoveMyFav(data) {
+    const body = {
+      userId: 'albaqer_naseej',
+      anonymous: true,
+      email: 'albaqer@naseej.com',
+      itemListPageInformation: {
+        itemSourceId: data.itemSourceId,
+        dataSourceName: data.dataSourceName,
+        dataSourceId: data.dataSourceId,
+        materialTypeId: data.materialTypeId,
+        materialTypeName: data.materialTypeName,
+        title: data.Title,
+        description: data.PhysicalDescription,
+        coverImage: data.coverImage,
+        addtionslFields: data.addtionFieldsInListPage.addtionField
+      }
+    };
+
+    if (!this.isFav) {
+      this.$favService.addFavorite(body).subscribe(response => {
+        if (response !== null) {
+          // this.$searchService.emitfavBadgeEvent(data);
+          this.isFav = true;
+        }
+      });
+    } else {
+      const bdy = {
+        _id: this.bookId
+      };
+      this.$favService.removeFavoriteItem(bdy).subscribe(response => {
+        this.$searchService.emitfavBadgeEvent(data);
+        this.isFav = false;
+      });
+    }
   }
 
   sharefacebook() {

@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NKAMPSearchSharedModule } from './NKAMP-Search-shared/NKAMP-Search-shared.module';
 // import { ShareButtonsModule } from '@ngx-share/buttons'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShareModule } from '@ngx-share/core';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    ShareModule,
     // ShareButtonsModule,
     NKAMPSearchSharedModule.forRoot()
   ],

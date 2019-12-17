@@ -33,11 +33,6 @@ export class DetailsComponent implements OnInit {
       const details = params.details;
       this.requestBody = JSON.parse(details);
       this.requestBodyForRating = JSON.stringify(this.requestBody.searchKeyWords[0]);
-      //// console.log('test rating view in detail' + this.requestBodyForRating);
-      // const rateData =  JSON.stringify(this.requestBody.searchKeyWords);
-      // this.requestBodyForRating = rateData;
-      // //// console.log('ddddd' + this.requestBodyForRating);
-
   });
   }
   ngOnInit() {

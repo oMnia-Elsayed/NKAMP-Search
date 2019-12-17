@@ -68,13 +68,11 @@ export class GridComponent implements OnInit {
           // this.$searchService.emitfavBadgeEvent(data);
           this.isFav = true;
         }
-
       });
     } else {
       const bdy = {
         _id: this.bookId
       };
-
       this.$favService.removeFavoriteItem(bdy).subscribe(response => {
         this.$searchService.emitfavBadgeEvent(data);
         this.isFav = false;
@@ -103,7 +101,6 @@ export class GridComponent implements OnInit {
     };
     this.router.navigate(['book'], navigationExtras);
   }
-
 
 
   showSuccess() { // TODO: read message from configuration/translation file
