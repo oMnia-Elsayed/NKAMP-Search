@@ -69,8 +69,8 @@
         </svg>
       </span>
     </h6>
-    <a *ngIf="bookData.Title.length >= 20" (click)="onTap()" sclass="gResultNK-title"> {{ (bookData.Title | slice:0:20)+'..'}}</a>
-    <a *ngIf="bookData.Title.length < 20" (click)="onTap()" class="gResultNK-title"> {{bookData.Title}}</a>
+    <a *ngIf="bookData.Title.length >= 20" (click)="onTap()" sclass="gResultNK-title" data-toggle="tooltip"  title={{bookData.Title}}> {{ (bookData.Title | slice:0:20)+'..'}}</a>
+    <a *ngIf="bookData.Title.length < 20" (click)="onTap()" class="gResultNK-title" data-toggle="tooltip"  title={{bookData.Title}}> {{bookData.Title}}</a>
 
     <h5 *ngIf="bookData.Author !== null && bookData.Author.length >= 60" class="gResultNK-auther">{{ (bookData.Author | slice:0:60)+'..'}}</h5>
     <h5 *ngIf="bookData.Author !== null && bookData.Author.length < 60" class="gResultNK-auther">{{bookData.Author}}</h5>

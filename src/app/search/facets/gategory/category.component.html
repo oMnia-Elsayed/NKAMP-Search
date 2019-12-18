@@ -24,13 +24,13 @@
 
   <ng-container *ngIf="!this.isVituailizationActive && !this.isCollapsed">
     <div class="facet-controls">
-      <label class="controlRC">
+      <!-- <label class="controlRC">
         <span class="text" i18n="@@lbl_select_all">Select all</span>
         <span class="count float-right">{{this.totalOfAllItems}}</span>
         <input type="checkbox" name="facet_name" value="selectAll" [(ngModel)]="masterSelected"
           (change)="checkUncheckAll()" />
         <div class="controlRC_indicator"></div>
-      </label>
+      </label> -->
 
       <ng-container *ngFor="let item of checklist; let idx = index">
         <label class="controlRC" *ngIf="idx < maxShowing || this.showAll">

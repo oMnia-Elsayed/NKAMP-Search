@@ -9,7 +9,7 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 })
 export class DigitalResultComponent implements OnInit {
   page = 1;
-  isClicked = false;
+  isClicked = true;
 
   public config: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -45,6 +45,7 @@ export class DigitalResultComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
   clicked() {
     this.isClicked = !this.isClicked;
   }

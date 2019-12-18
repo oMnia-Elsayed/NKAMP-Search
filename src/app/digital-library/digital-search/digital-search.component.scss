@@ -1,0 +1,41 @@
+.digitalSearch {
+  &-fields {
+
+    &-input {
+      color: #999999;
+    }
+
+    &-btn {
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: 'Segoe UI';
+    }
+    &-favorite {
+      position: relative;
+    }
+
+    & span:not(.digitalSearch-fields-favoriteNumber) {
+      margin: 0 1rem;
+      color: #FF6600;
+    }
+
+    &-favoriteNumber {
+      right: 0.7rem;
+      top: 0rem;
+    }
+
+    &--favoriteIcon {
+      position: relative;
+    }
+
+    & form {
+      margin: 0 auto;
+    }
+  }
+
+  &-title {
+    text-align: left;
+    padding: 0.3rem;
+  }
+}

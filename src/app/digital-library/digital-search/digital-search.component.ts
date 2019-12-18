@@ -12,4 +12,8 @@ export class DigitalSearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmitSearch() {
+
+  }
+
 }
